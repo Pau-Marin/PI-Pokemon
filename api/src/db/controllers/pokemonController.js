@@ -7,9 +7,6 @@ module.exports = {
 
     Pokemon.bulkCreate(pokemons);
     return "Pokemons añadidos correctamente a la BBDD";
-    // for (pokemon in pokemons) {
-    //   this.addPokemon(pokemon);
-    // }
   },
 
   // Añade un objeto pokemon a la BBDD
