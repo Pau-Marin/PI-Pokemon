@@ -17,9 +17,12 @@ const getPokemons = async (offset = 0, limit = 20) => {
   });
 
   let pokemon;
+  let promises = [];
   // ¡VENGA API, A TRABAJAR! =D
   for (let i = 0; i < urls.length; i++) {
     let url = await axios(urls[i]);
+    promises.push(url);
+
     let data = url.data;
     pokemon = {
       idAPI: data.id,
@@ -31,8 +34,13 @@ const getPokemons = async (offset = 0, limit = 20) => {
       height: data.height,
       weight: data.weight,
     };
+    controller.addPokemon(pokemon);
     pokemonsObjs.push(pokemon);
   }
+
+  Promise.all(promises).then((p) => {
+    console.log("BBDD actualizada");
+  });
 
   return controller.addPokemons(pokemonsObjs);
 };
