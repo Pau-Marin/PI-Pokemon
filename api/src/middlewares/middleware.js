@@ -22,7 +22,7 @@ const getPokemons = async (offset = 0, limit = 20) => {
     let url = await axios(urls[i]);
     let data = url.data;
     pokemon = {
-      id: data.id,
+      idAPI: data.id,
       name: data.name,
       hp: data.stats.find((s) => s.stat.name === "hp").base_stat,
       atack: data.stats.find((s) => s.stat.name === "attack").base_stat,

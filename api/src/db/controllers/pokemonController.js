@@ -8,7 +8,7 @@ module.exports = {
     // let data = await Pokemon.bulkCreate(pokemons);
     for (let i = 0; i < pokemons.length; i++) {
       await Pokemon.findOrCreate({
-        where: { id: pokemons[i].id },
+        where: { idAPI: pokemons[i].id },
         defaults: pokemons[i],
         raw: true,
       });
