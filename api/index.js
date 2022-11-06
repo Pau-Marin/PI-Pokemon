@@ -29,8 +29,38 @@ conn.sync({ force: true }).then(() => {
 
 // Actualizando BBDD con la API al arrancar el servidor.
 const { getPokemons } = require("./src/middlewares/middleware");
+
 async function startSetup() {
-  await getPokemons(0, 1154);
+  let date = new Date();
+  let month =
+    date.getMonth().toString().length < 2
+      ? "0" + date.getMonth()
+      : date.getMonth();
+
+  let day =
+    date.getDate().toString().length < 2
+      ? "0" + date.getDate()
+      : date.getDate();
+
+  let hours =
+    date.getHours().toString().length < 2
+      ? "0" + date.getHours()
+      : date.getHours();
+
+  let minutes =
+    date.getMinutes().toString().length < 2
+      ? "0" + date.getMinutes()
+      : date.getMinutes();
+
+  let seconds =
+    date.getSeconds().toString().length < 2
+      ? "0" + date.getSeconds()
+      : date.getSeconds();
+
+  console.log(
+    `Updating database on ${date.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`
+  );
+  await getPokemons(0, 10);
 }
 startSetup();
 

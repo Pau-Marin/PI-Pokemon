@@ -5,14 +5,19 @@ module.exports = {
   addPokemons: async function (pokemons) {
     if (!pokemons) throw new Error("No me mandaste pokemons para añadir!");
 
-    // let data = await Pokemon.bulkCreate(pokemons);
+    let promises = [];
     for (let i = 0; i < pokemons.length; i++) {
-      await Pokemon.findOrCreate({
-        where: { idAPI: pokemons[i].id },
+      let promise = await Pokemon.findOrCreate({
+        where: { idAPI: pokemons[i].idAPI },
         defaults: pokemons[i],
         raw: true,
       });
+      promises.push(promise);
     }
+
+    Promise.all(promises).then((p) => {
+      console.log("All pokemons added to database");
+    });
 
     let pokeList = await this.listPokemons();
 

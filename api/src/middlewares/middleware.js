@@ -22,6 +22,7 @@ const getPokemons = async (offset = 0, limit = 20) => {
   for (let i = 0; i < urls.length; i++) {
     let url = await axios(urls[i]);
     promises.push(url);
+    console.log("Cargando pokemon en " + urls[i]);
 
     let data = url.data;
     pokemon = {
