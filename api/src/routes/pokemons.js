@@ -5,8 +5,9 @@ const router = Router();
 
 // /pokemons
 router.get("/", async (req, res) => {
+  const { offset, limit } = req.query;
   try {
-    let pokemons = await getPokemons();
+    let pokemons = await getPokemons(offset, limit);
     return res.json(pokemons);
   } catch (error) {
     return res.status(404).send(error.message);
