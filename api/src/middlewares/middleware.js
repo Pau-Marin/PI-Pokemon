@@ -45,8 +45,8 @@ const getPokemons = async (offset = 0, limit = 20) => {
   return controller.addPokemons(pokemonsObjs);
 };
 
-const searchPokemon = async (id) => {
-  return controller.searchPokemon(id);
+const searchPokemon = async (search) => {
+  return controller.searchPokemon(search);
 };
 
 module.exports = {

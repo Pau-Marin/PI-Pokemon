@@ -41,12 +41,14 @@ module.exports = {
     return { data: results, msg: "Ya hay pokemons en la BBDD" };
   },
 
-  searchPokemon: async function (id) {
-    let data = await Pokemon.findByPk(id);
+  // Busca pokemons en función de las llaves del objeto que recive
+  searchPokemon: async function (search) {
+    let data = await Pokemon.findAll({ where: search });
+
+    if (data.length <= 0) {
+      throw new Error("Ese pokemon no se encuentra en la base de datos");
+    }
+
     return { data, msg: "Pokemon encontrado" };
   },
-
-  // searchPokemonName: async function (name) {
-  // return await Pokemon.findOne({ where: { name } });
-  // },
 };
