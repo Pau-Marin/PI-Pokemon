@@ -23,10 +23,15 @@ module.exports = {
   },
 
   // Añade un objeto pokemon a la BBDD
-  addPokemon: function (pokemon) {
+  addPokemon: async function (pokemon) {
     if (!pokemon) throw new Error("No me mandaste un pokemon para añadir!");
 
-    Pokemon.create(pokemon);
+    let poke = await await Pokemon.findOrCreate({
+      where: { name: pokemon.name },
+      defaults: pokemon,
+      raw: true,
+    });
+    return { data: poke, msg: "Pokemon añadido correctamente" };
   },
 
   // Lista todos los pokemons en la base de datos
