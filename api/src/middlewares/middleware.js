@@ -1,6 +1,7 @@
 const axios = require("axios");
 
-const { Pokemon, Types } = require("../db");
+const { Pokemon, Types } = require("../db/db");
+const controller = require("../db/controllers/pokemonController");
 
 const getPokemons = async (offset = 0, limit = 20) => {
   let pokemonsObjs = [];
@@ -33,7 +34,7 @@ const getPokemons = async (offset = 0, limit = 20) => {
     pokemonsObjs.push(pokemon);
   }
 
-  return pokemonsObjs;
+  return controller.addPokemons(pokemonsObjs);
 };
 
 module.exports = {
