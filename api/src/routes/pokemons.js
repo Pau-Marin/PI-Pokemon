@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getPokemons } = require("../middlewares/middleware");
+const { getPokemons, searchPokemon } = require("../middlewares/middleware");
 
 const router = Router();
 
@@ -16,7 +16,13 @@ router.get("/", async (req, res) => {
 
 // /pokemons/:id
 router.get("/:id", async (req, res) => {
-  console.log("TEST");
+  const { id } = req.params;
+  try {
+    let pokemon = await searchPokemon(id);
+    return res.json(pokemon);
+  } catch (error) {
+    return res.status(404).send(error.message);
+  }
 });
 
 // /pokemons?name=...

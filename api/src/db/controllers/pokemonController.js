@@ -36,5 +36,12 @@ module.exports = {
     return { data: results, msg: "Ya hay pokemons en la BBDD" };
   },
 
-  searchPokemon: function () {},
+  searchPokemon: async function (id) {
+    let data = await Pokemon.findByPk(id);
+    return { data, msg: "Pokemon encontrado" };
+  },
+
+  // searchPokemonName: async function (name) {
+  // return await Pokemon.findOne({ where: { name } });
+  // },
 };
