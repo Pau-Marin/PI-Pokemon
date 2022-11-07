@@ -10,7 +10,7 @@ module.exports = {
       defaults: pokemon,
       raw: true,
     });
-    console.log(`Pokemon ${pokemon.name} añadido correctamente`);
+
     return { data: poke, msg: `Pokemon ${pokemon.name} añadido correctamente` };
   },
 

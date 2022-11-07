@@ -3,14 +3,13 @@ const { Type } = require("../db");
 module.exports = {
   addType: async function (type) {
     if (!type) throw new Error("No me mandaste tipos de Pokemon para añadir!");
-    console.log("type = ", type);
 
     let tp = await Type.findOrCreate({
       where: { name: type.name },
       defaults: type,
       raw: true,
     });
-    console.log(`Tipo ${tp.name} añadido correctamente`);
+
     return { data: tp, msg: `Tipo ${tp.name} añadido correctamente` };
   },
 
