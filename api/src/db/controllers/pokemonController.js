@@ -43,7 +43,10 @@ module.exports = {
   listPokemons: async function () {
     let results = await Pokemon.findAll({ raw: true });
 
-    return { data: results, msg: "Ya hay pokemons en la BBDD" };
+    return {
+      data: results,
+      msg: `Actualmente hay ${results.length} Pokemons en la base de datos`,
+    };
   },
 
   // Busca pokemons en función de las llaves del objeto que recive
