@@ -40,10 +40,14 @@ const getPokemons = async (offset = 0, limit = 20) => {
   }
 
   Promise.all(promises).then((p) => {
-    console.log("BBDD actualizada");
+    console.log("All Pokemon data gathered");
   });
 
   return controller.addPokemons(pokemonsObjs);
+};
+
+const listPokemons = async () => {
+  return controller.listPokemons();
 };
 
 const searchPokemon = async (search) => {
@@ -52,5 +56,6 @@ const searchPokemon = async (search) => {
 
 module.exports = {
   getPokemons,
+  listPokemons,
   searchPokemon,
 };

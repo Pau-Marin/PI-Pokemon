@@ -19,9 +19,9 @@ router.get("/:id", async (req, res) => {
 
 // /pokemons?name=...
 router.get("/", async (req, res, next) => {
-  console.log("/pokemon/?query called");
   const { name } = req.query;
   if (name) {
+    console.log("/pokemon/?query called");
     try {
       let pokemon = await searchPokemon(req.query);
       return res.json(pokemon);
