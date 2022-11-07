@@ -6,8 +6,9 @@ module.exports = (sequelize) => {
   sequelize.define(
     "type",
     {
-      id: {
+      idAPI: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
       },
 

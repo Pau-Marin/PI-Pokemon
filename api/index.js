@@ -28,7 +28,7 @@ conn.sync({ force: true }).then(() => {
 });
 
 // Actualizando BBDD con la API al arrancar el servidor.
-const { getPokemons } = require("./src/middlewares/middleware");
+const { getPokemons, getTypes } = require("./src/middlewares/middleware");
 
 async function startSetup() {
   let date = new Date();
@@ -60,8 +60,17 @@ async function startSetup() {
   console.log(
     `Updating database on ${date.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`
   );
-  await getPokemons(0, 10);
+
+  let types = await getTypes();
+  let pokemons = await getPokemons(0, 1154);
+
+  Promise.all([types, pokemons]).then((p) => {
+    console.log(
+      `Database up-to-date on ${date.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`
+    );
+  });
 }
+
 startSetup();
 
 // La base de datos se actualiza automaticamente cada 24h
