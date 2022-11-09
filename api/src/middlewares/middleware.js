@@ -1,8 +1,5 @@
 const axios = require("axios");
 
-const pokemonController = require("../db/controllers/pokemonController");
-const typeController = require("../db/controllers/typeController");
-
 let pokemonsObjs = [];
 let typesObjs = [];
 

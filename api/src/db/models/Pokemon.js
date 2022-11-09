@@ -13,10 +13,6 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
 
-      idAPI: {
-        type: DataTypes.INTEGER,
-      },
-
       name: {
         type: DataTypes.STRING,
         allowNull: false,
