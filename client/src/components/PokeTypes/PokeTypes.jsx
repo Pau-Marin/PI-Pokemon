@@ -1,6 +1,13 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/index";
 
-export default class PokeTypes extends Component {
+export class PokeTypes extends Component {
+  componentDidMount() {
+    this.props.getAllTypes();
+  }
+
   render() {
     return (
       <div>
@@ -9,3 +16,15 @@ export default class PokeTypes extends Component {
     );
   }
 }
+
+export const mapStateToProps = (state) => {
+  return {
+    types: state.types,
+  };
+};
+
+export const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(actions, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokeTypes);
