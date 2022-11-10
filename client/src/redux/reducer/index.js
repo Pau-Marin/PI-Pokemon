@@ -20,7 +20,7 @@ const rootReducer = (state = initialState, action) => {
     case "CREATE_POKEMON":
       return {
         ...state,
-        pokemons: [...state.movies, action.payload],
+        pokemons: [...state.pokemons, action.payload],
       };
     case "GET_ALL_TYPES":
       return {
