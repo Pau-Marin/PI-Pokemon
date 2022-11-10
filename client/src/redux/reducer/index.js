@@ -25,8 +25,7 @@ const rootReducer = (state = initialState, action) => {
     case "GET_ALL_TYPES":
       return {
         ...state,
-        types: action,
-        pokeType: action.payload,
+        types: action.payload,
       };
     default:
       return state;
