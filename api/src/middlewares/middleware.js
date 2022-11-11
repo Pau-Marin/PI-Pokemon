@@ -31,7 +31,7 @@ const getPokemonsFromAPI = async () => {
       id: data.id,
       name: data.name,
       hp: data.stats.find((s) => s.stat.name === "hp").base_stat,
-      atack: data.stats.find((s) => s.stat.name === "attack").base_stat,
+      attack: data.stats.find((s) => s.stat.name === "attack").base_stat,
       defense: data.stats.find((s) => s.stat.name === "defense").base_stat,
       speed: data.stats.find((s) => s.stat.name === "speed").base_stat,
       height: data.height * 10,

@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
       },
 
-      atack: {
+      attack: {
         type: DataTypes.INTEGER,
       },
 
