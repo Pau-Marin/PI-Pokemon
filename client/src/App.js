@@ -5,7 +5,6 @@ import { Route } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Home from "./components/Home/Home";
 import PokeInfo from "./components/PokeInfo/PokeInfo";
-import PokeTypes from "./components/PokeTypes/PokeTypes";
 import CreatePokemon from "./components/CreatePokemon/CreatePokemon";
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
       <Route path={"/"} render={() => <Nav />} />
       <Route exact path={"/"} render={() => <Home />} />
       <Route exact path={"/pokemon"} render={() => <PokeInfo />} />
-      <Route exact path={"/types"} render={() => <PokeTypes />} />
       <Route exact path={"/createPokemon"} render={() => <CreatePokemon />} />
     </div>
   );
