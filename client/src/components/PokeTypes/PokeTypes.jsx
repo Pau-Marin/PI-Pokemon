@@ -1,30 +1,63 @@
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import * as actions from "../../redux/actions/index";
+import React from "react";
 
-export class PokeTypes extends Component {
-  componentDidMount() {
-    this.props.getAllTypes();
-  }
+import bug from "../../img/icons/bug.svg";
+import dark from "../../img/icons/dark.svg";
+import dragon from "../../img/icons/dragon.svg";
+import electric from "../../img/icons/electric.svg";
+import fairy from "../../img/icons/fairy.svg";
+import fighting from "../../img/icons/fighting.svg";
+import fire from "../../img/icons/fire.svg";
+import flying from "../../img/icons/flying.svg";
+import ghost from "../../img/icons/ghost.svg";
+import grass from "../../img/icons/grass.svg";
+import ground from "../../img/icons/ground.svg";
+import ice from "../../img/icons/ice.svg";
+import normal from "../../img/icons/normal.svg";
+import poison from "../../img/icons/poison.svg";
+import psychic from "../../img/icons/psychic.svg";
+import rock from "../../img/icons/rock.svg";
+import steel from "../../img/icons/steel.svg";
+import water from "../../img/icons/water.svg";
 
-  render() {
-    return (
-      <div>
-        <h1>Esto es la lista de tipos de Pokemons</h1>
-      </div>
-    );
-  }
-}
+import "./pokeTypes.css";
 
-export const mapStateToProps = (state) => {
-  return {
-    types: state.types,
+const PokeTypes = (props) => {
+  const typeIcons = {
+    bug,
+    dark,
+    dragon,
+    electric,
+    fairy,
+    fighting,
+    fire,
+    flying,
+    ghost,
+    grass,
+    ground,
+    ice,
+    normal,
+    poison,
+    psychic,
+    rock,
+    steel,
+    water,
   };
+
+  const { types } = props;
+  return (
+    <div className="wrapper">
+      {types.type1 && (
+        <div className={`icon ${types.type1}`}>
+          <img src={typeIcons[types.type1]} alt={types.type1} />
+        </div>
+      )}
+      {types.type2 && (
+        <div className={`icon ${types.type2}`}>
+          <img src={typeIcons[types.type2]} alt={types.type2} />
+        </div>
+      )}
+    </div>
+  );
 };
 
-export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actions, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PokeTypes);
+export default PokeTypes;

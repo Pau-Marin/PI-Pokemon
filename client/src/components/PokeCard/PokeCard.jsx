@@ -8,6 +8,7 @@ const PokeCard = (props) => {
     <div className="pokeCard">
       <h2>{name}</h2>
       <img src={img} alt={name} />
+      <PokeTypes types={types} />
     </div>
   );
 };
