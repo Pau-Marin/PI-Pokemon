@@ -23,12 +23,9 @@ export class Home extends Component {
               key={p.id}
               id={p.id}
               name={p.name}
-              hp={p.hp}
-              attack={p.attack}
-              defense={p.defense}
-              speed={p.speed}
-              height={p.height}
-              weight={p.weight}
+              img={p.img}
+              stats={p.stats}
+              types={p.types}
             />
           );
         })}

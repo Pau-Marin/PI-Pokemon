@@ -27,13 +27,43 @@ const getPokemonsFromAPI = async () => {
     console.log("Cargando pokemon de " + urls[i]);
 
     let data = url.data;
+    let stats = data.stats;
+
+    let types;
+    if (data.types.length > 1) {
+      types = {
+        type1: data.types[0].type.name,
+        type2: data.types[1]?.type.name,
+      };
+    } else {
+      types = {
+        type1: data.types[0].type.name,
+      };
+    }
+
     pokemon = {
       id: data.id,
       name: data.name,
-      hp: data.stats.find((s) => s.stat.name === "hp").base_stat,
-      attack: data.stats.find((s) => s.stat.name === "attack").base_stat,
-      defense: data.stats.find((s) => s.stat.name === "defense").base_stat,
-      speed: data.stats.find((s) => s.stat.name === "speed").base_stat,
+      stats: [
+        {
+          name: "HP",
+          stat: stats.find((s) => s.stat.name === "hp").base_stat,
+        },
+        {
+          name: "ATK",
+          stat: stats.find((s) => s.stat.name === "attack").base_stat,
+        },
+        {
+          name: "DEF",
+          stat: stats.find((s) => s.stat.name === "defense").base_stat,
+        },
+        {
+          name: "SPD",
+          stat: stats.find((s) => s.stat.name === "speed").base_stat,
+        },
+      ],
+      img: data.sprites.other.dream_world.front_default,
+      types,
       height: data.height * 10,
       weight: data.weight,
     };
