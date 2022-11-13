@@ -30,10 +30,11 @@ const getPokemonsFromAPI = async () => {
     let stats = data.stats;
 
     let types;
+    // Some pokemons only have 1 type
     if (data.types.length > 1) {
       types = {
         type1: data.types[0].type.name,
-        type2: data.types[1]?.type.name,
+        type2: data.types[1].type.name,
       };
     } else {
       types = {
@@ -43,7 +44,9 @@ const getPokemonsFromAPI = async () => {
 
     pokemon = {
       id: data.id,
-      name: data.name,
+      // Capitalize 1st letter in name
+      name: data.name[0].toUpperCase() + data.name.substring(1),
+      // Stats in array for easyer use in front
       stats: [
         {
           name: "HP",
@@ -62,8 +65,10 @@ const getPokemonsFromAPI = async () => {
           stat: stats.find((s) => s.stat.name === "speed").base_stat,
         },
       ],
+      // img = URL
       img: data.sprites.other.dream_world.front_default,
       types,
+      // Height needs to be * 10 to be in cm
       height: data.height * 10,
       weight: data.weight,
     };
