@@ -7,7 +7,7 @@ export default class Landing extends Component {
       <div className="searchBar">
         <h1>Está será la landing page chupi-guay</h1>
         <Link to="/home">
-          <button>Test</button>
+          <button>¡Entrar!</button>
         </Link>
       </div>
     );
