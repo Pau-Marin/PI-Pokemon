@@ -5,7 +5,7 @@ export default class Nav extends Component {
   render() {
     return (
       <div>
-        <Link to={"/"}>Home</Link>
+        <Link to={"/home"}>Home</Link>
         <Link to={"/createPokemon"}>Crear Pokemon</Link>
       </div>
     );
