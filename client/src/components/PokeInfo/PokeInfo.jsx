@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class PokeInfo extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Esto es la información de un Pokemon</h1>
-      </div>
-    );
-  }
+export default function PokeInfo({ pokemon }) {
+  return (
+    <div>
+      <h1>Esto es la información de un Pokemon</h1>
+      <h2>{pokemon.name}</h2>
+    </div>
+  );
 }
