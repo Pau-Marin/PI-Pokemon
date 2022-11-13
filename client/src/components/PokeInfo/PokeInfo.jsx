@@ -8,11 +8,11 @@ export default function PokeInfo({ pokemon }) {
       {console.log(pokemon)}
       <h1>Esto es la información de un Pokemon</h1>
       <h2>
-        {pokemon.name} #{pokemon.id}
+        #{pokemon.id} - {pokemon.name}
       </h2>
       <img src={pokemon.img} alt={pokemon.name} />
       <PokeTypes types={pokemon.types} />
-      <h3>Stats:</h3>
+      <h3>Stats</h3>
       {pokemon.stats.map((s) => {
         return (
           <p key={s.name}>
