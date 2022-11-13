@@ -6,6 +6,7 @@ import * as actions from "../../redux/actions/index";
 import logo from "../../img/logo.png";
 
 import PokeCard from "../PokeCard/PokeCard";
+import PokeSearch from "../PokeSearch/PokeSearch";
 
 export class Home extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ export class Home extends Component {
       <div className="home">
         <h1>Esto es la Home</h1>
         <img src={logo} alt="PIkemon logo" />
+        <PokeSearch />
         {this.props.pokemons?.map((p) => {
           return (
             <PokeCard
