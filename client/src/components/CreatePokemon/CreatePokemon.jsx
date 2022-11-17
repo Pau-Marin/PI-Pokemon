@@ -122,19 +122,20 @@ export default function CreatePokemon() {
         <h3>Tipos</h3>
         <ul className="form_types_list">
           {types.map((t) => {
-            return (
-              <li key={t.name}>
-                <label>
-                  <input
-                    type="checkbox"
-                    value={t.name}
-                    onChange={handleCheck}
-                    name={t.name}
-                  />
-                  {t.name}
-                </label>
-              </li>
-            );
+            if (t.name !== "Unknown")
+              return (
+                <li key={t.name}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={t.name}
+                      onChange={handleCheck}
+                      name={t.name}
+                    />
+                    {t.name}
+                  </label>
+                </li>
+              );
           })}
         </ul>
       </div>
