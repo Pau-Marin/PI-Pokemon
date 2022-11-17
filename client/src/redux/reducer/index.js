@@ -29,6 +29,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         types: action.payload,
       };
+    case "SEARCH_BY_NAME":
+      return {
+        ...state,
+        pokemons: action.payload,
+      };
     case "FILTER_BY_STATUS": {
       const allPokemons = state.allPokemons;
       const statusFilter =

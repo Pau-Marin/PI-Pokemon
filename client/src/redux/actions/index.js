@@ -49,3 +49,17 @@ export function orderByName(payload) {
     payload,
   };
 }
+
+export function searchPokemonByName(name) {
+  return async function (dispatch) {
+    try {
+      let pokemon = await axios(`http://localhost:3001/pokemons?name=${name}`);
+      return dispatch({
+        type: "SEARCH_BY_NAME",
+        payload: [pokemon.data],
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}

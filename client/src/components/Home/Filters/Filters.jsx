@@ -41,14 +41,14 @@ export default function Filters({ paginate }) {
     <div className="filters">
       <button onClick={(e) => resetFiltersHandler(e)}>Reset filters</button>
       <select onChange={(e) => handleSort(e)}>
-        <option selected disabled defaultValue>
+        <option selected disabled>
           Name
         </option>
         <option value="az">A-Z</option>
         <option value="za">Z-A</option>
       </select>
       <select onChange={(e) => handleFilterType(e)}>
-        <option selected disabled defaultValue>
+        <option selected disabled>
           Type
         </option>
         {types?.map((t) => {
@@ -60,9 +60,7 @@ export default function Filters({ paginate }) {
         })}
       </select>
       <select onChange={(e) => handleFilterCreated(e)}>
-        <option value="all" defaultValue>
-          Todos
-        </option>
+        <option value="all">Todos</option>
         <option value="existing">Existentes</option>
         <option value="created">Creados</option>
       </select>

@@ -98,7 +98,6 @@ const listPokemons = async () => {
 
 const searchPokemon = async (search) => {
   if (!pokemonsObjs.length) await getPokemonsFromAPI();
-  console.log(search);
 
   // Search nos llega como objeto, separamos todas las keys en un arreglo
   // (Así permitimos reutilizar la función en distintas búsquedas)
@@ -109,7 +108,10 @@ const searchPokemon = async (search) => {
 
   for (let i = 0; i < pokemonsObjs.length; i++) {
     for (let j = 0; j < keys.length; j++) {
-      if (pokemonsObjs[i][keys[j]] == search[keys[j]]) return pokemonsObjs[i];
+      if (
+        pokemonsObjs[i][keys[j]].toLowerCase() == search[keys[j]].toLowerCase()
+      )
+        return pokemonsObjs[i];
     }
   }
   throw new Error("Pokemon no encontrado");
