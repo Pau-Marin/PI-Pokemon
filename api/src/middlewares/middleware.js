@@ -128,7 +128,7 @@ const getTypesFromAPI = async () => {
     let data = url.data;
     type = {
       id: data.id,
-      name: data.name,
+      name: data.name[0].toUpperCase() + data.name.substring(1),
     };
     typesObjs.push(type);
   }
