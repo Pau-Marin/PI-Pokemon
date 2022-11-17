@@ -7,7 +7,7 @@ import logo from "../../img/logo.png";
 import Filters from "./Filters/Filters";
 import Pagination from "./Pagination/Pagination";
 import PokeCard from "../PokeCard/PokeCard";
-import PokeSearch from "../PokeSearch/PokeSearch";
+import PokeSearch from "./PokeSearch/PokeSearch";
 
 export default function Home() {
   const dispatch = useDispatch();
