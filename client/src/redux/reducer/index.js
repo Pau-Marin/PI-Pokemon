@@ -1,4 +1,5 @@
 const initialState = {
+  allPokemons: [],
   pokemons: [],
   types: [],
   pokemonDetails: {},
@@ -11,6 +12,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: action.payload,
+        allPokemons: action.payload,
       };
     case "GET_POKEMON_DETAILS":
       return {
@@ -26,6 +28,22 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         types: action.payload,
+      };
+    case "FILTER_BY_STATUS":
+      const allPokemons = state.allPokemons;
+      const statusFilter =
+        action.payload === "all"
+          ? allPokemons
+          : allPokemons.filter((p) => {
+              if (
+                p.types.type1 === action.payload ||
+                p.types.type2 === action.payload
+              )
+                return p;
+            });
+      return {
+        ...state,
+        pokemons: statusFilter,
       };
     default:
       return state;

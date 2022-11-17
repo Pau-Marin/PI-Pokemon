@@ -5,6 +5,7 @@ let typesObjs = [];
 
 const getPokemonsFromAPI = async () => {
   // Obtenemos datos
+  // let pokemons = await axios("https://pokeapi.co/api/v2/pokemon?limit=1154");
   let pokemons = await axios("https://pokeapi.co/api/v2/pokemon");
   let pokemonsNext = await axios(pokemons.data.next);
 
@@ -33,12 +34,18 @@ const getPokemonsFromAPI = async () => {
     // Some pokemons only have 1 type
     if (data.types.length > 1) {
       types = {
-        type1: data.types[0].type.name,
-        type2: data.types[1].type.name,
+        type1:
+          data.types[0].type.name[0].toUpperCase() +
+          data.types[0].type.name.substring(1),
+        type2:
+          data.types[1].type.name[0].toUpperCase() +
+          data.types[1].type.name.substring(1),
       };
     } else {
       types = {
-        type1: data.types[0].type.name,
+        type1:
+          data.types[0].type.name[0].toUpperCase() +
+          data.types[0].type.name.substring(1),
       };
     }
 

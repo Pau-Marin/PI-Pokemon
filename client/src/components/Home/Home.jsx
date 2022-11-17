@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPokemons, getAllTypes } from "../../redux/actions/index";
+import { getAllPokemons } from "../../redux/actions/index";
 
 import logo from "../../img/logo.png";
 
+import Filters from "./Filters/Filters";
 import Pagination from "./Pagination/Pagination";
 import PokeCard from "../PokeCard/PokeCard";
 import PokeSearch from "../PokeSearch/PokeSearch";
@@ -30,12 +31,11 @@ export default function Home() {
     dispatch(getAllPokemons());
   }, [dispatch]);
 
-
-
   return (
     <div className="home">
       <h1>Esto es la Home</h1>
       <img src={logo} alt="PIkemon logo" />
+      <Filters paginate={paginate} />
       <Pagination
         pokemonsPerPage={pokemonsPerPage}
         allPokemons={allPokemons.length}

@@ -47,13 +47,13 @@ const PokeTypes = (props) => {
   return (
     <div className="wrapper">
       {types.type1 && (
-        <div className={`icon ${types.type1}`}>
-          <img src={typeIcons[types.type1]} alt={types.type1} />
+        <div className={`icon ${types.type1.toLowerCase()}`}>
+          <img src={typeIcons[types.type1.toLowerCase()]} alt={types.type1} />
         </div>
       )}
       {types.type2 && (
-        <div className={`icon ${types.type2}`}>
-          <img src={typeIcons[types.type2]} alt={types.type2} />
+        <div className={`icon ${types.type2.toLowerCase()}`}>
+          <img src={typeIcons[types.type2.toLowerCase()]} alt={types.type2} />
         </div>
       )}
     </div>
