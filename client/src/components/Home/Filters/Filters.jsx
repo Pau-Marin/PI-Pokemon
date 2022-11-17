@@ -4,6 +4,7 @@ import {
   getAllPokemons,
   getAllTypes,
   filterPokemonsByTypes,
+  filterPokemonsByCreated,
 } from "../../../redux/actions/index";
 
 export default function Filters({ paginate }) {
@@ -20,8 +21,12 @@ export default function Filters({ paginate }) {
   }
 
   function handleFilterType(e) {
-    e.preventDefault();
     dispatch(filterPokemonsByTypes(e.target.value));
+    paginate(1);
+  }
+
+  function handleFilterCreated(e) {
+    dispatch(filterPokemonsByCreated(e.target.value));
     paginate(1);
   }
 
@@ -41,7 +46,7 @@ export default function Filters({ paginate }) {
           );
         })}
       </select>
-      <select>
+      <select onChange={(e) => handleFilterCreated(e)}>
         <option value="all">Todos</option>
         <option value="existing">Existentes</option>
         <option value="created">Creados</option>

@@ -35,3 +35,10 @@ export function filterPokemonsByTypes(payload) {
     payload,
   };
 }
+
+export function filterPokemonsByCreated(payload) {
+  return {
+    type: "FILTER_BY_CREATED",
+    payload,
+  };
+}

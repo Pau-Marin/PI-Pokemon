@@ -29,7 +29,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         types: action.payload,
       };
-    case "FILTER_BY_STATUS":
+    case "FILTER_BY_STATUS": {
       const allPokemons = state.allPokemons;
       const statusFilter =
         action.payload === "all"
@@ -44,6 +44,17 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: statusFilter,
+      };
+    }
+    case "FILTER_BY_CREATED":
+      const allPokemons = state.allPokemons;
+      const createdFilter =
+        action.payload === "created"
+          ? allPokemons.filter((p) => p.createdInDb)
+          : allPokemons.filter((p) => !p.createdInDb);
+      return {
+        ...state,
+        pokemons: action.payload === "all" ? allPokemons : createdFilter,
       };
     default:
       return state;
