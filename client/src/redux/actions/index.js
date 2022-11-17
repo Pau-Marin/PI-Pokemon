@@ -24,7 +24,7 @@ export const createPokemon = (payload) => {
   };
 };
 
-export const getAllTypes = () => {
+export const getAllTypes = (payload) => {
   return async function (dispatch) {
     let types = await axios("http://localhost:3001/types");
     return dispatch({ type: "GET_ALL_TYPES", payload: types.data });
