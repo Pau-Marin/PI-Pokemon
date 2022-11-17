@@ -1,36 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTypes } from "../../redux/actions";
-
-// export function validate(input) {
-//   let error = {};
-//   if (!input.username) {
-//     error.username = "Username is required";
-//   } else if (!/\S+@\S+\.\S+/.test(input.name)) {
-//     error.username = "Username is invalid";
-//   }
-
-//   if (!input.password) {
-//     error.password = "password is required";
-//   } else if (!/(?=.-*[0-9])/.test(input.password)) {
-//     error.password = "Password is invalid";
-//   }
-
-//   return error;
-// }
+import { useHistory } from "react-router-dom";
+import { getAllTypes, createPokemon } from "../../redux/actions";
 
 export default function CreatePokemon() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const types = useSelector((state) => state.types);
 
   useEffect(() => {
     dispatch(getAllTypes());
-  }, [dispatch]);
+  }, []);
 
-  // const [types, setTypes] = useState(0);
-  // const [error, setError] = React.useState({});
-  const [input, setInput] = React.useState({
+  const [input, setInput] = useState({
     name: "",
+    img: "",
     hp: 0,
     attack: 0,
     defense: 0,
@@ -41,16 +25,48 @@ export default function CreatePokemon() {
     weight: 0,
   });
 
-  let handleInputChange = (e) => {
+  function handleInputChange(e) {
     setInput({ ...input, [e.target.name]: e.target.value });
+    console.log(input);
+  }
 
-    // let objError = validate({ ...input, [e.target.name]: e.target.value });
-    // setError(objError);
-  };
+  function handleCheck(e) {
+    if (e.target.checked) {
+      if (input.type1 && input.type2) {
+        console.log("Un Pokemon no puede tener más de 2 tipos.");
+      }
+
+      if (!input.type1 && !input.type2) {
+        setInput({ ...input, type1: e.target.value });
+      }
+      if (!input.type1) setInput({ ...input, type1: e.target.value });
+      if (!input.type2) setInput({ ...input, type2: e.target.value });
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(input);
+    dispatch(createPokemon(input));
+    alert("Pokemon creado");
+    setInput({
+      name: "",
+      img: "",
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+      type1: "",
+      type2: "",
+      height: 0,
+      weight: 0,
+    });
+    history.push("/home");
+  }
 
   return (
-    <form>
-      <h1>Esto es Crear Pokemon</h1>
+    <form className="form" onSubmit={handleSubmit}>
+      <h1>Crea tu pokemon</h1>
       <label>Nombre del Pokemon:</label>
       <input
         type="text"
@@ -59,7 +75,15 @@ export default function CreatePokemon() {
         name="name"
         placeholder="Nombre del Pokemon"
       ></input>
-      <div>
+      <label>Imagen del Pokemon:</label>
+      <input
+        type="text"
+        value={input.img}
+        onChange={handleInputChange}
+        name="img"
+        placeholder="Imagen del Pokemon"
+      ></input>
+      <div className="form_stats">
         <h3>Estadísticas</h3>
         <label>HP:</label>
         <input
@@ -74,7 +98,7 @@ export default function CreatePokemon() {
           type="text"
           value={input.attack}
           onChange={handleInputChange}
-          name="atk"
+          name="attack"
           placeholder="Ataque del Pokemon"
         ></input>
         <label>DEF:</label>
@@ -82,7 +106,7 @@ export default function CreatePokemon() {
           type="text"
           value={input.defense}
           onChange={handleInputChange}
-          name="def"
+          name="defense"
           placeholder="Defensa del Pokemon"
         ></input>
         <label>SPD:</label>
@@ -90,23 +114,31 @@ export default function CreatePokemon() {
           type="text"
           value={input.speed}
           onChange={handleInputChange}
-          name="spd"
+          name="speed"
           placeholder="Velocidad del Pokemon"
         ></input>
       </div>
-      <div>
+      <div className="form_types">
         <h3>Tipos</h3>
-        <select>
+        <ul className="form_types_list">
           {types.map((t) => {
-            return t.name !== "unknown" ? (
-              <option value={t.name} key={t.name}>
-                {t.name}
-              </option>
-            ) : null;
+            return (
+              <li key={t.name}>
+                <label>
+                  <input
+                    type="checkbox"
+                    value={t.name}
+                    onChange={handleCheck}
+                    name={t.name}
+                  />
+                  {t.name}
+                </label>
+              </li>
+            );
           })}
-        </select>
+        </ul>
       </div>
-      <div>
+      <div className="form_size">
         <h3>Tamaño</h3>
         <label>Height:</label>
         <input
@@ -125,6 +157,7 @@ export default function CreatePokemon() {
           placeholder="Peso del Pokemon"
         ></input>
       </div>
+      <button type="submit">¡Crear!</button>
     </form>
   );
 }

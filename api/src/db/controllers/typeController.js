@@ -13,9 +13,8 @@ module.exports = {
     return { data: tp, msg: `Tipo ${tp.name} añadido correctamente` };
   },
 
-  listTypes: async function () {
+  listTypesDb: async function () {
     let results = await Type.findAll({ raw: true });
-
     return {
       data: results,
       msg: `Actualmente hay ${results.length} tipos de Pokemon en la base de datos`,

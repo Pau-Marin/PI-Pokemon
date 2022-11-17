@@ -1,7 +1,41 @@
 const { Router } = require("express");
-const { searchPokemon, listPokemons } = require("../middlewares/middleware");
+const {
+  createPokemon,
+  searchPokemon,
+  listPokemons,
+} = require("../middlewares/middleware");
 
 const router = Router();
+
+// /pokemons/createPokemon
+router.post("/createPokemon", async (req, res) => {
+  const {
+    name,
+    hp,
+    attack,
+    defense,
+    speed,
+    img,
+    type1,
+    type2,
+    height,
+    weight,
+  } = req.body;
+
+  const pokemonCreated = await createPokemon(
+    name,
+    hp,
+    attack,
+    defense,
+    speed,
+    img,
+    type1,
+    type2,
+    height,
+    weight
+  );
+  res.json(pokemonCreated.msg);
+});
 
 // /pokemons/:id
 router.get("/:id", async (req, res) => {
@@ -18,8 +52,8 @@ router.get("/:id", async (req, res) => {
 
 // /pokemons?name=...
 router.get("/", async (req, res, next) => {
-  const { id, name } = req.query;
-  if (id || name) {
+  const { name } = req.query;
+  if (name) {
     try {
       let pokemon = await searchPokemon(req.query);
       return res.json(pokemon);

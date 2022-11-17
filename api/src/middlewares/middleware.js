@@ -1,7 +1,9 @@
 const axios = require("axios");
 
+const { addType, listTypesDb } = require("../db/controllers/typeController");
+const { addPokemon } = require("../db/controllers/pokemonController");
+
 let pokemonsObjs = [];
-let typesObjs = [];
 
 const getPokemonsFromAPI = async () => {
   // Obtenemos datos
@@ -25,7 +27,7 @@ const getPokemonsFromAPI = async () => {
   for (let i = 0; i < urls.length; i++) {
     let url = await axios(urls[i]);
     promises.push(url);
-    console.log("Cargando pokemon de " + urls[i]);
+    console.log(`Cargando pokemon de ${urls[i]} (${url.data.name})`);
 
     let data = url.data;
     let stats = data.stats;
@@ -108,13 +110,44 @@ const searchPokemon = async (search) => {
 
   for (let i = 0; i < pokemonsObjs.length; i++) {
     for (let j = 0; j < keys.length; j++) {
-      if (
-        pokemonsObjs[i][keys[j]].toLowerCase() == search[keys[j]].toLowerCase()
-      )
-        return pokemonsObjs[i];
+      let pokemonKey = pokemonsObjs[i][keys[j]];
+      let searchKey = search[keys[j]];
+      if (typeof pokemonKey === "string" && typeof searchKey === "string") {
+        pokemonKey = pokemonKey.toLowerCase();
+        searchKey = searchKey.toLowerCase();
+      }
+      if (pokemonKey == searchKey) return pokemonsObjs[i];
     }
   }
   throw new Error("Pokemon no encontrado");
+};
+
+const createPokemon = async (
+  name,
+  hp,
+  attack,
+  defense,
+  speed,
+  img,
+  type1,
+  type2,
+  height,
+  weight
+) => {
+  let pokemon = await addPokemon({
+    name,
+    hp,
+    attack,
+    defense,
+    speed,
+    img,
+    type1,
+    type2,
+    height,
+    weight,
+    createdInDb: true,
+  });
+  return pokemon;
 };
 
 const getTypesFromAPI = async () => {
@@ -132,31 +165,31 @@ const getTypesFromAPI = async () => {
   for (let i = 0; i < urls.length; i++) {
     let url = await axios(urls[i]);
     promises.push(url);
-    console.log("Cargando tipo de " + urls[i]);
+    console.log(`Cargando tipo de ${urls[i]} (${url.data.name})`);
 
     let data = url.data;
     type = {
       id: data.id,
       name: data.name[0].toUpperCase() + data.name.substring(1),
     };
-    typesObjs.push(type);
+    addType(type);
   }
 
   Promise.all(promises).then((p) => {
     console.log("All type data gathered");
   });
-
-  return typesObjs;
 };
 
 const listTypes = async () => {
-  return typesObjs.length ? typesObjs : getTypesFromAPI();
+  let types = await listTypesDb();
+  return types.data;
 };
 
 module.exports = {
   getPokemonsFromAPI,
   listPokemons,
   searchPokemon,
+  createPokemon,
   getTypesFromAPI,
   listTypes,
 };

@@ -34,6 +34,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
       },
 
+      img: {
+        type: DataTypes.STRING,
+      },
+
       height: {
         type: DataTypes.INTEGER,
       },

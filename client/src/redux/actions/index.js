@@ -14,13 +14,15 @@ export const getPokemonDetails = (id) => {
   };
 };
 
-// TODO: crear ruta en el back para crear pokemons
-// export const createPokemon = (pokemon) => {
-//   return async function (dispatch) {}
-//     let pokemon = axios("http://localhost:3001/createPokemon");
-//     return dispatch({ type: "CREATE_POKEMON", payload: pokemon.data });
-//   };
-// };
+export const createPokemon = (payload) => {
+  return async function (dispatch) {
+    let pokemon = axios.post(
+      "http://localhost:3001/pokemons/createPokemon",
+      payload
+    );
+    return pokemon;
+  };
+};
 
 export const getAllTypes = () => {
   return async function (dispatch) {

@@ -1,15 +1,20 @@
-const { Pokemon } = require("../db");
+const { Pokemon, Type } = require("../db");
 
 module.exports = {
   // Añade un objeto pokemon a la BBDD
   addPokemon: async function (pokemon) {
     if (!pokemon) throw new Error("No me mandaste un pokemon para añadir!");
 
-    let poke = await Pokemon.findOrCreate({
-      where: { name: pokemon.name },
-      defaults: pokemon,
-      raw: true,
-    });
+    let poke = await Pokemon.create(pokemon);
+
+    let type1Db = await Type.findAll({ where: { name: pokemon.type1 } });
+    poke.addType(type1Db);
+    if (pokemon.type2) {
+      let type2Db = await Type.findAll({
+        where: { name: pokemon.type2 },
+      });
+      poke.addType(type2Db);
+    }
 
     return { data: poke, msg: `Pokemon ${pokemon.name} añadido correctamente` };
   },
