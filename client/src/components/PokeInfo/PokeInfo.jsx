@@ -4,8 +4,7 @@ import PokeTypes from "../PokeTypes/PokeTypes";
 
 export default function PokeInfo({ pokemon }) {
   return (
-    <div>
-      {console.log(pokemon)}
+    <div className="pokeInfo">
       <h1>Esto es la información de un Pokemon</h1>
       <h2>
         #{pokemon.id} - {pokemon.name}
