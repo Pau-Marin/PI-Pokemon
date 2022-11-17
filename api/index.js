@@ -29,7 +29,7 @@ conn.sync({ force: true }).then(() => {
 
 // Actualizando BBDD con la API al arrancar el servidor.
 const {
-  getPokemonsFromAPI,
+  getPokemons,
   getTypesFromAPI,
 } = require("./src/middlewares/middleware");
 
@@ -65,7 +65,7 @@ async function startSetup() {
   );
 
   let types = await getTypesFromAPI();
-  let pokemons = await getPokemonsFromAPI();
+  let pokemons = await getPokemons();
 
   Promise.all([types, pokemons]).then((p) => {
     console.log(

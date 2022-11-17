@@ -20,8 +20,45 @@ module.exports = {
   },
 
   // Lista todos los pokemons en la base de datos
-  listPokemons: async function () {
+  listPokemonsDb: async function () {
     let results = await Pokemon.findAll({ raw: true });
+
+    results = results.map((p) => {
+      return {
+        id: p.id,
+        // Capitalize 1st letter in name
+        name: p.name[0].toUpperCase() + p.name.substring(1),
+        // Stats in array for easyer use in front
+        stats: [
+          {
+            name: "HP",
+            stat: p.hp,
+          },
+          {
+            name: "ATK",
+            stat: p.attack,
+          },
+          {
+            name: "DEF",
+            stat: p.defense,
+          },
+          {
+            name: "SPD",
+            stat: p.speed,
+          },
+        ],
+        // img = URL
+        img: p.img,
+        types: {
+          type1: p.type1,
+          type2: p.type2,
+        },
+        // Height needs to be * 10 to be in cm
+        height: p.height * 10,
+        weight: p.weight,
+        createdInDb: p.createdInDb,
+      };
+    });
 
     return {
       data: results,

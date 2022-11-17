@@ -1,11 +1,15 @@
 const axios = require("axios");
 
 const { addType, listTypesDb } = require("../db/controllers/typeController");
-const { addPokemon } = require("../db/controllers/pokemonController");
+const {
+  addPokemon,
+  listPokemonsDb,
+} = require("../db/controllers/pokemonController");
 
 let pokemonsObjs = [];
 
 const getPokemonsFromAPI = async () => {
+  let pokemonsAPI = [];
   // Obtenemos datos
   // let pokemons = await axios("https://pokeapi.co/api/v2/pokemon?limit=1154");
   let pokemons = await axios("https://pokeapi.co/api/v2/pokemon");
@@ -82,24 +86,35 @@ const getPokemonsFromAPI = async () => {
       weight: data.weight,
     };
 
-    pokemonsObjs.push(pokemon);
+    pokemonsAPI.push(pokemon);
   }
 
   Promise.all(promises).then((p) => {
     console.log("All Pokemon data gathered");
   });
 
-  return pokemonsObjs;
+  return pokemonsAPI;
+};
+
+const getPokemonsFromDb = async () => {
+  return await listPokemonsDb();
+};
+
+const getPokemons = async () => {
+  const pokemonsAPI = await getPokemonsFromAPI();
+  const pokemonsDB = await getPokemonsFromDb();
+  const allPokemons = pokemonsAPI.concat(pokemonsDB.data);
+  pokemonsObjs = allPokemons;
 };
 
 const listPokemons = async () => {
   // Si ya hay pokemons en el arreglo pokemonsObjs devuelve ese arreglo
   // De lo contrario lanza getPokemonsFromAPI() para rellenarlo
-  return pokemonsObjs.length ? pokemonsObjs : getPokemonsFromAPI();
+  return pokemonsObjs.length ? pokemonsObjs : getPokemons();
 };
 
 const searchPokemon = async (search) => {
-  if (!pokemonsObjs.length) await getPokemonsFromAPI();
+  if (!pokemonsObjs.length) await getPokemons();
 
   // Search nos llega como objeto, separamos todas las keys en un arreglo
   // (Así permitimos reutilizar la función en distintas búsquedas)
@@ -186,7 +201,7 @@ const listTypes = async () => {
 };
 
 module.exports = {
-  getPokemonsFromAPI,
+  getPokemons,
   listPokemons,
   searchPokemon,
   createPokemon,
