@@ -5,7 +5,6 @@ const router = Router();
 
 // /pokemons/:id
 router.get("/:id", async (req, res) => {
-  console.log("/pokemon/:id called");
   const { id } = req.params;
   if (id) {
     try {
@@ -21,7 +20,6 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res, next) => {
   const { id, name } = req.query;
   if (id || name) {
-    console.log("/pokemon/?query called");
     try {
       let pokemon = await searchPokemon(req.query);
       return res.json(pokemon);
@@ -35,7 +33,6 @@ router.get("/", async (req, res, next) => {
 
 // /pokemons/
 router.get("/", async (req, res) => {
-  console.log("/pokemon/ called");
   try {
     let pokemons = await listPokemons();
     return res.json(pokemons);
