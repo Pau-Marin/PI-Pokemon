@@ -1,4 +1,3 @@
-// const axios = require("axios");
 import axios from "axios";
 
 export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";

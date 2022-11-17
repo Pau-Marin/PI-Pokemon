@@ -31,13 +31,12 @@ export default function CreatePokemon() {
   // const [error, setError] = React.useState({});
   const [input, setInput] = React.useState({
     name: "",
-    stats: [
-      { name: "HP", stat: 0 },
-      { name: "ATK", stat: 0 },
-      { name: "DEF", stat: 0 },
-      { name: "SPD", stat: 0 },
-    ],
-    types: { type1: "", type2: "" },
+    hp: 0,
+    attack: 0,
+    defense: 0,
+    speed: 0,
+    type1: "",
+    type2: "",
     height: 0,
     weight: 0,
   });
@@ -65,7 +64,7 @@ export default function CreatePokemon() {
         <label>HP:</label>
         <input
           type="text"
-          value={input.stats[0].stat}
+          value={input.hp}
           onChange={handleInputChange}
           name="hp"
           placeholder="Vida del Pokemon"
@@ -73,7 +72,7 @@ export default function CreatePokemon() {
         <label>ATK:</label>
         <input
           type="text"
-          value={input.stats[1].stat}
+          value={input.attack}
           onChange={handleInputChange}
           name="atk"
           placeholder="Ataque del Pokemon"
@@ -81,7 +80,7 @@ export default function CreatePokemon() {
         <label>DEF:</label>
         <input
           type="text"
-          value={input.stats[2].stat}
+          value={input.defense}
           onChange={handleInputChange}
           name="def"
           placeholder="Defensa del Pokemon"
@@ -89,7 +88,7 @@ export default function CreatePokemon() {
         <label>SPD:</label>
         <input
           type="text"
-          value={input.stats[3].stat}
+          value={input.speed}
           onChange={handleInputChange}
           name="spd"
           placeholder="Velocidad del Pokemon"
