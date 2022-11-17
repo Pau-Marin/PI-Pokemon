@@ -11,7 +11,6 @@ import {
 export default function Filters({ paginate }) {
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
-  const [order, setOrder] = useState("");
 
   useEffect(() => {
     dispatch(getAllTypes());

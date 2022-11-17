@@ -54,7 +54,8 @@ const rootReducer = (state = initialState, action) => {
           : allPokemons.filter((p) => !p.createdInDb);
       return {
         ...state,
-        pokemons: action.payload === "all" ? allPokemons : createdFilter,
+        pokemons:
+          action.payload === "all" ? [...allPokemons] : [...createdFilter],
       };
     case "ORDER_BY_NAME":
       const sortedArr =
