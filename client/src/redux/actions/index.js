@@ -16,10 +16,7 @@ export const getPokemonDetails = (id) => {
 
 export const createPokemon = (payload) => {
   return async function (dispatch) {
-    let pokemon = axios.post(
-      "http://localhost:3001/pokemons/createPokemon",
-      payload
-    );
+    let pokemon = axios.post("http://localhost:3001/pokemons", payload);
     return pokemon;
   };
 };

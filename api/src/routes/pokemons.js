@@ -7,8 +7,8 @@ const {
 
 const router = Router();
 
-// /pokemons/createPokemon
-router.post("/createPokemon", async (req, res) => {
+// /pokemons/
+router.post("/", async (req, res) => {
   const {
     name,
     hp,
