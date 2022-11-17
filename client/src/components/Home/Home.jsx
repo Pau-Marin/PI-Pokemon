@@ -29,7 +29,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getAllPokemons());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="home">

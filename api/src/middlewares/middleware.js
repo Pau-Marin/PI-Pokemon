@@ -110,6 +110,7 @@ const getPokemons = async () => {
 const listPokemons = async () => {
   // Si ya hay pokemons en el arreglo pokemonsObjs devuelve ese arreglo
   // De lo contrario lanza getPokemonsFromAPI() para rellenarlo
+  getPokemons();
   return pokemonsObjs.length ? pokemonsObjs : getPokemons();
 };
 
