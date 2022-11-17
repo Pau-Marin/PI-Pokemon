@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 export default class Nav extends Component {
   render() {
     return (
-      <div>
+      <nav>
         <Link to={"/home"}>Home</Link>
         <Link to={"/createPokemon"}>Crear Pokemon</Link>
-      </div>
+      </nav>
     );
   }
 }
