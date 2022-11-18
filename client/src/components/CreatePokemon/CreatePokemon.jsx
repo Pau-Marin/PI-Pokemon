@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getAllTypes, createPokemon } from "../../redux/actions";
+import {
+  getAllPokemons,
+  getAllTypes,
+  createPokemon,
+} from "../../redux/actions";
 
 export default function CreatePokemon() {
   const dispatch = useDispatch();
@@ -48,6 +52,7 @@ export default function CreatePokemon() {
     e.preventDefault();
     console.log(input);
     dispatch(createPokemon(input));
+    dispatch(getAllPokemons());
     alert("Pokemon creado");
     setInput({
       name: "",
