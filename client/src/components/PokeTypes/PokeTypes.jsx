@@ -50,14 +50,14 @@ const PokeTypes = (props) => {
 
   const dispatch = useDispatch();
 
-  function handleFilterByType(e, type) {
+  function handleFilterByType(type) {
     dispatch(filterPokemonsByTypes(type));
   }
 
   return (
     <div className="wrapper">
       {types?.type1 && (
-        <Link to="/home" onClick={(e) => handleFilterByType(e, types.type1)}>
+        <Link to="/home" onClick={(e) => handleFilterByType(types.type1)}>
           <button className={`icon ${types.type1.toLowerCase()}`}>
             <img
               src={typeIcons[types.type1.toLowerCase()]}
