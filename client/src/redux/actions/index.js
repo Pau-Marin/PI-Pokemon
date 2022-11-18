@@ -30,7 +30,7 @@ export const getAllTypes = (payload) => {
 
 export function filterPokemonsByTypes(payload) {
   return {
-    type: "FILTER_BY_STATUS",
+    type: "FILTER_BY_TYPE",
     payload,
   };
 }

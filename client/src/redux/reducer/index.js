@@ -34,7 +34,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: action.payload,
       };
-    case "FILTER_BY_STATUS": {
+    case "FILTER_BY_TYPE": {
       const allPokemons = state.allPokemons;
       const statusFilter =
         action.payload === "all"
@@ -48,7 +48,7 @@ const rootReducer = (state = initialState, action) => {
             });
       return {
         ...state,
-        pokemons: statusFilter,
+        pokemons: [...statusFilter],
       };
     }
     case "FILTER_BY_CREATED":
@@ -59,8 +59,7 @@ const rootReducer = (state = initialState, action) => {
           : allPokemons.filter((p) => !p.createdInDb);
       return {
         ...state,
-        pokemons:
-          action.payload === "all" ? [...allPokemons] : [...createdFilter],
+        pokemons: action.payload === "all" ? allPokemons : createdFilter,
       };
     case "ORDER_BY_NAME":
       const sortedArr =
