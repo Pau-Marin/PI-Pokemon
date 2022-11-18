@@ -7,8 +7,13 @@ const {
 } = require("../db/controllers/pokemonController");
 
 let pokemonsObjs = [];
+let updatingPokemons = false;
 
 const getPokemonsFromAPI = async () => {
+  // Prevent duplicated api calls
+  if (updatingPokemons) return pokemonsObjs;
+  updatingPokemons = true;
+
   let pokemonsAPI = [];
   // Obtenemos datos
   // let pokemons = await axios("https://pokeapi.co/api/v2/pokemon?limit=1154");
@@ -91,6 +96,7 @@ const getPokemonsFromAPI = async () => {
 
   Promise.all(promises).then((p) => {
     console.log("All Pokemon data gathered");
+    updatingPokemons = false;
   });
 
   return pokemonsAPI;
