@@ -9,31 +9,7 @@ const router = Router();
 
 // /pokemons/
 router.post("/", async (req, res) => {
-  const {
-    name,
-    hp,
-    attack,
-    defense,
-    speed,
-    img,
-    type1,
-    type2,
-    height,
-    weight,
-  } = req.body;
-
-  const pokemonCreated = await createPokemon(
-    name,
-    hp,
-    attack,
-    defense,
-    speed,
-    img,
-    type1,
-    type2,
-    height,
-    weight
-  );
+  const pokemonCreated = await createPokemon(req.body);
   res.json(pokemonCreated.msg);
 });
 

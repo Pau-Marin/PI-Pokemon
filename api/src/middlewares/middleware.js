@@ -144,18 +144,17 @@ const searchPokemon = async (search) => {
   throw new Error("Pokemon no encontrado");
 };
 
-const createPokemon = async (
+const createPokemon = async ({
   name,
   hp,
   attack,
   defense,
   speed,
   img,
-  type1,
-  type2,
+  types,
   height,
-  weight
-) => {
+  weight,
+}) => {
   let pokemon = await addPokemon({
     name,
     hp,
@@ -163,8 +162,8 @@ const createPokemon = async (
     defense,
     speed,
     img,
-    type1,
-    type2,
+    type1: types[0],
+    type2: types[1],
     height,
     weight,
     createdInDb: true,

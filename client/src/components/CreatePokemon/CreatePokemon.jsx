@@ -7,10 +7,84 @@ import {
   createPokemon,
 } from "../../redux/actions";
 
+function validate(input) {
+  let errors = {};
+  const validateName = /^[a-z]+$/;
+  const validateNum = /^\d+$/;
+  const validateUrl = /^(ftp|http|https):\/\/[^ "]+$/;
+
+  // Nombre
+  if (!validateName.test(input.name))
+    errors.name = "El nombre solo puede contener letras";
+  if (!input.name) errors.name = "Se requiere un nombre";
+
+  // Imagen
+  if (input.img && !validateUrl.test(input.img))
+    errors.img = "La imagen debe tener una URL válida";
+
+  // HP
+  if (!input.hp) errors.hp = "Se requiere una cantidad de vida";
+  if (!validateNum.test(input.hp)) errors.hp = "Introduce la vida en números";
+  if (input.hp < 0) errors.hp = "La vida no puede ser negativa";
+  if (input.hp === "0") errors.hp = "La vida no puede ser 0";
+  if (input.hp > 200) errors.hp = "La vida no puede ser superior a 200";
+
+  // ATK
+  if (!input.attack) errors.attack = "Se requiere una cantidad de ataque";
+  if (!validateNum.test(input.attack))
+    errors.attack = "Introduce el ataque en números";
+  if (input.attack < 0) errors.attack = "El ataque no puede ser negativo";
+  if (input.attack === "0") errors.attack = "El ataque no puede ser 0";
+  if (input.attack > 200)
+    errors.attack = "El ataque no puede ser superior a 200";
+
+  // DEF
+  if (!input.defense) errors.defense = "Se requiere una cantidad de defensa";
+  if (!validateNum.test(input.defense))
+    errors.defense = "Introduce la defensa en números";
+  if (input.defense < 0) errors.defense = "La defensa no puede ser negativa";
+  if (input.defense === "0") errors.defense = "La defensa no puede ser 0";
+  if (input.defense > 200)
+    errors.defense = "La defensa no puede ser superior a 200";
+
+  // SPD
+  if (!input.speed) errors.speed = "Se requiere una cantidad de velocidad";
+  if (!validateNum.test(input.speed))
+    errors.speed = "Introduce la velocidad en números";
+  if (input.speed < 0) errors.speed = "La velocidad no puede ser negativa";
+  if (input.speed === "0") errors.speed = "La velocidad no puede ser 0";
+  if (input.speed > 200)
+    errors.speed = "La velocidad no puede ser superior a 200";
+
+  // Altura
+  if (!input.height) errors.height = "Se requiere un peso";
+  if (!validateNum.test(input.height))
+    errors.height = "Introduce el peso en números";
+  if (input.height < 0) errors.height = "El peso no puede ser negativo";
+  if (input.height === "0") errors.height = "El peso no puede ser 0";
+  if (input.height > 200)
+    errors.height =
+      "Lo sentimos, actualmente no aceptamos pokemons de más de 200Kg. Nuestra infraestructura es pequeña y no entraría en la base de datos.";
+
+  // Peso
+  if (!input.weight) errors.weight = "Se requiere una altura";
+  if (!validateNum.test(input.weight))
+    errors.weight = "Introduce la altura en números";
+  if (input.weight < 0) errors.weight = "La altura no puede ser negativa";
+  if (input.weight === "0") errors.weight = "La altura no puede ser 0";
+  if (input.weight > 200)
+    errors.weight =
+      "Lo sentimos, actualmente no aceptamos pokemons de más de 2m. Nuestra infraestructura es pequeña y no entraría en la base de datos.";
+
+  return errors;
+}
+
 export default function CreatePokemon() {
   const dispatch = useDispatch();
   const history = useHistory();
   const types = useSelector((state) => state.types);
+  const [errors, setErrors] = useState({});
+  const [disabledButton, setDisabledButton] = useState(true);
 
   useEffect(() => {
     dispatch(getAllTypes());
@@ -23,34 +97,83 @@ export default function CreatePokemon() {
     attack: 0,
     defense: 0,
     speed: 0,
-    type1: "",
-    type2: "",
+    types: [],
     height: 0,
     weight: 0,
   });
 
   function handleInputChange(e) {
     setInput({ ...input, [e.target.name]: e.target.value });
-    console.log(input);
+    setErrors(validate({ ...input, [e.target.name]: e.target.value }));
+
+    setDisabledButton(
+      errors.name &&
+        errors.img &&
+        errors.hp &&
+        errors.attack &&
+        errors.defense &&
+        errors.speed &&
+        errors.types &&
+        errors.height &&
+        errors.weight
+    );
   }
 
-  function handleCheck(e) {
+  function handleCheckBox(e) {
     if (e.target.checked) {
-      if (input.type1 && input.type2) {
-        console.log("Un Pokemon no puede tener más de 2 tipos.");
-      }
+      setInput({
+        ...input,
+        types: [...input.types, e.target.value],
+      });
 
-      if (!input.type1 && !input.type2) {
-        setInput({ ...input, type1: e.target.value });
-      }
-      if (!input.type1) setInput({ ...input, type1: e.target.value });
-      if (!input.type2) setInput({ ...input, type2: e.target.value });
+      setErrors(
+        validateCheckBox({
+          ...input,
+          types: [...input.types, e.target.value],
+        })
+      );
+    } else if (!e.target.checked) {
+      setInput({
+        ...input,
+        types: input.types.filter((t) => t !== e.target.value),
+      });
+
+      setErrors(
+        validateCheckBox({
+          ...input,
+          types: input.types.filter((t) => t !== e.target.value),
+        })
+      );
     }
+
+    setDisabledButton(
+      errors.name &&
+        errors.img &&
+        errors.hp &&
+        errors.attack &&
+        errors.defense &&
+        errors.speed &&
+        errors.types &&
+        errors.height &&
+        errors.weight
+    );
+  }
+
+  function validateCheckBox(input) {
+    let errors = {};
+
+    if (!input.types.length) {
+      errors.types = "El Pokemon debe tener al menos 1 tipo";
+    }
+    if (input.types.length > 2) {
+      errors.types = "Los Pokemon no pueden tener más de 2 tipos";
+    }
+
+    return errors;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
     dispatch(createPokemon(input));
     dispatch(getAllPokemons());
     alert("Pokemon creado");
@@ -80,6 +203,8 @@ export default function CreatePokemon() {
         name="name"
         placeholder="Nombre del Pokemon"
       ></input>
+      {errors.name && <p className="error">{errors.name}</p>}
+
       <label>Imagen del Pokemon:</label>
       <input
         type="text"
@@ -88,6 +213,8 @@ export default function CreatePokemon() {
         name="img"
         placeholder="Imagen del Pokemon"
       ></input>
+      {errors.img && <p className="error">{errors.img}</p>}
+
       <div className="form_stats">
         <h3>Estadísticas</h3>
         <label>HP:</label>
@@ -98,6 +225,8 @@ export default function CreatePokemon() {
           name="hp"
           placeholder="Vida del Pokemon"
         ></input>
+        {errors.hp && <p className="error">{errors.hp}</p>}
+
         <label>ATK:</label>
         <input
           type="text"
@@ -106,6 +235,8 @@ export default function CreatePokemon() {
           name="attack"
           placeholder="Ataque del Pokemon"
         ></input>
+        {errors.attack && <p className="error">{errors.attack}</p>}
+
         <label>DEF:</label>
         <input
           type="text"
@@ -114,6 +245,8 @@ export default function CreatePokemon() {
           name="defense"
           placeholder="Defensa del Pokemon"
         ></input>
+        {errors.defense && <p className="error">{errors.defense}</p>}
+
         <label>SPD:</label>
         <input
           type="text"
@@ -122,7 +255,9 @@ export default function CreatePokemon() {
           name="speed"
           placeholder="Velocidad del Pokemon"
         ></input>
+        {errors.speed && <p className="error">{errors.speed}</p>}
       </div>
+
       <div className="form_types">
         <h3>Tipos</h3>
         <ul className="form_types_list">
@@ -134,7 +269,7 @@ export default function CreatePokemon() {
                     <input
                       type="checkbox"
                       value={t.name}
-                      onChange={handleCheck}
+                      onChange={handleCheckBox}
                       name={t.name}
                     />
                     {t.name}
@@ -143,10 +278,12 @@ export default function CreatePokemon() {
               );
           })}
         </ul>
+        {errors.types && <p className="error">{errors.types}</p>}
       </div>
+
       <div className="form_size">
         <h3>Tamaño</h3>
-        <label>Height:</label>
+        <label>Height (cm):</label>
         <input
           type="text"
           value={input.height}
@@ -154,7 +291,9 @@ export default function CreatePokemon() {
           name="height"
           placeholder="Altura del Pokemon"
         ></input>
-        <label>Weight:</label>
+        {errors.height && <p className="error">{errors.height}</p>}
+
+        <label>Weight (Kg):</label>
         <input
           type="text"
           value={input.weight}
@@ -162,8 +301,11 @@ export default function CreatePokemon() {
           name="weight"
           placeholder="Peso del Pokemon"
         ></input>
+        {errors.weight && <p className="error">{errors.weight}</p>}
       </div>
-      <button type="submit">¡Crear!</button>
+      <button type="submit" disabled={disabledButton}>
+        ¡Crear!
+      </button>
     </form>
   );
 }
