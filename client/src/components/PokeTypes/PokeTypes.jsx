@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { filterPokemonsByTypes } from "../../redux/actions/index";
+import { Link } from "react-router-dom";
 
 import bug from "../../img/icons/bug.svg";
 import dark from "../../img/icons/dark.svg";
@@ -44,17 +47,37 @@ const PokeTypes = (props) => {
   };
 
   const { types } = props;
+
+  const dispatch = useDispatch();
+
+  function handleFilterByType(e, type) {
+    dispatch(filterPokemonsByTypes(type));
+  }
+
   return (
     <div className="wrapper">
       {types?.type1 && (
-        <div className={`icon ${types.type1.toLowerCase()}`}>
-          <img src={typeIcons[types.type1.toLowerCase()]} alt={types.type1} />
-        </div>
+        <Link to="/home" onClick={(e) => handleFilterByType(e, types.type1)}>
+          <button className={`icon ${types.type1.toLowerCase()}`}>
+            <img
+              src={typeIcons[types.type1.toLowerCase()]}
+              alt={types.type1}
+              title={types.type1}
+            />
+          </button>
+        </Link>
       )}
       {types?.type2 && (
-        <div className={`icon ${types.type2.toLowerCase()}`}>
-          <img src={typeIcons[types.type2.toLowerCase()]} alt={types.type2} />
-        </div>
+        <button
+          className={`icon ${types.type2.toLowerCase()}`}
+          onClick={(e) => handleFilterByType(e, types.type2)}
+        >
+          <img
+            src={typeIcons[types.type2.toLowerCase()]}
+            alt={types.type2}
+            title={types.type2}
+          />
+        </button>
       )}
     </div>
   );
