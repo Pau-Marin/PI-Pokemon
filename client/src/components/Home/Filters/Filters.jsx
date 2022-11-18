@@ -19,6 +19,7 @@ export default function Filters({ paginate }) {
   function resetFiltersHandler(e) {
     e.preventDefault();
     dispatch(getAllPokemons());
+    paginate(1);
   }
 
   function handleSort(e) {
