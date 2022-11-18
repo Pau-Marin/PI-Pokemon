@@ -54,7 +54,7 @@ module.exports = {
           type2: p.type2,
         },
         // Height needs to be * 10 to be in cm
-        height: p.height * 10,
+        height: p.height,
         weight: p.weight,
         createdInDb: p.createdInDb,
       };
