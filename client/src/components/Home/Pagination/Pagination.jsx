@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./Pagination.css";
+
 export default function Pagination({ pokemonsPerPage, allPokemons, paginate }) {
   const pageNumbers = [];
 
