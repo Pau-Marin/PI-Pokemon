@@ -1,4 +1,5 @@
-const { Pokemon, Type } = require("../db");
+const { Sequelize } = require("sequelize");
+const { Pokemon, Type, Pokemon_types } = require("../db");
 
 module.exports = {
   // Añade un objeto pokemon a la BBDD
@@ -8,12 +9,12 @@ module.exports = {
     let poke = await Pokemon.create(pokemon);
 
     let type1Db = await Type.findAll({ where: { name: pokemon.type1 } });
-    poke.addType(type1Db);
+    await poke.addType(type1Db);
     if (pokemon.type2) {
       let type2Db = await Type.findAll({
         where: { name: pokemon.type2 },
       });
-      poke.addType(type2Db);
+      await poke.addType(type2Db);
     }
 
     return { data: poke, msg: `Pokemon ${pokemon.name} añadido correctamente` };
@@ -21,9 +22,13 @@ module.exports = {
 
   // Lista todos los pokemons en la base de datos
   listPokemonsDb: async function () {
-    let results = await Pokemon.findAll({ raw: true });
+    let results = await Pokemon.findAll({ include: Type });
 
     results = results.map((p) => {
+      p = p.dataValues;
+
+      let types = [p.types[0].dataValues.name, p.types[1].dataValues.name];
+
       return {
         id: p.id,
         // Capitalize 1st letter in name
@@ -50,8 +55,8 @@ module.exports = {
         // img = URL
         img: p.img,
         types: {
-          type1: p.type1,
-          type2: p.type2,
+          type1: types[0],
+          type2: types[1],
         },
         // Height needs to be * 10 to be in cm
         height: p.height,

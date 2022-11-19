@@ -46,14 +46,6 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
       },
 
-      type1: {
-        type: DataTypes.STRING,
-      },
-
-      type2: {
-        type: DataTypes.STRING,
-      },
-
       createdInDb: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
