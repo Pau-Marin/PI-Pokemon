@@ -10,9 +10,11 @@ import Home from "./components/Home/Home";
 import PokeInfo from "./components/PokeInfo/PokeInfo";
 import CreatePokemon from "./components/CreatePokemon/CreatePokemon";
 
+import "./App.css";
+
 export default function App() {
   return (
-    <div>
+    <div className="app">
       <Route path={"/"} component={Nav} />
       <Route exact path={"/"} component={PokeLanding} />
       <Route exact path={"/home"} component={Home} />
