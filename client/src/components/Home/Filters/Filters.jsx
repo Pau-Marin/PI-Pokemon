@@ -5,8 +5,9 @@ import {
   getAllTypes,
   filterPokemonsByTypes,
   filterPokemonsByCreated,
+  filterPokemonsByAttack,
   orderByName,
-} from "../../../redux/actions/index";
+} from "../../../redux/actions/";
 
 export default function Filters({ paginate }) {
   const dispatch = useDispatch();
@@ -24,7 +25,10 @@ export default function Filters({ paginate }) {
 
   function handleSort(e) {
     e.preventDefault();
-    dispatch(orderByName(e.target.value));
+    if (e.target.value === "az" || e.target.value === "za")
+      dispatch(orderByName(e.target.value));
+    if (e.target.value === "ATK 1-9" || e.target.value === "ATK 9-1")
+      dispatch(filterPokemonsByAttack(e.target.value));
     paginate(1);
   }
 
@@ -43,10 +47,12 @@ export default function Filters({ paginate }) {
       <button onClick={(e) => resetFiltersHandler(e)}>Reset filters</button>
       <select onChange={(e) => handleSort(e)}>
         <option value="" disabled>
-          Name
+          Order
         </option>
         <option value="az">A-Z</option>
         <option value="za">Z-A</option>
+        <option value="ATK 1-9">ATK 1-9</option>
+        <option value="ATK 9-1">ATK 9-1</option>
       </select>
       <select onChange={(e) => handleFilterType(e)}>
         <option value="" disabled>

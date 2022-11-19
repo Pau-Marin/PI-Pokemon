@@ -49,6 +49,13 @@ export function orderByName(payload) {
   };
 }
 
+export function filterPokemonsByAttack(payload) {
+  return {
+    type: "ORDER_BY_ATTACK",
+    payload,
+  };
+}
+
 export function searchPokemonByName(name) {
   return async function (dispatch) {
     try {
