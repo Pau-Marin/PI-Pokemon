@@ -29,7 +29,6 @@ export default function Home() {
 
   useEffect(() => {
     if (!allPokemons.length) dispatch(getAllPokemons());
-    console.log(allPokemons.length);
   }, [dispatch]);
 
   return (
