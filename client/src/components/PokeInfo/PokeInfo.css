@@ -102,7 +102,7 @@
   border-top: 1px solid black;
 }
 
-.pokeInfoStats p {
+.bg2 .pokeInfoStats p {
   border-top: 1px solid black;
 }
 
@@ -110,6 +110,6 @@
   border-top: 1px solid black;
 }
 
-.pokeInfoDimensions p {
+.bg2 .pokeInfoDimensions p {
   border-top: 1px solid black;
 }

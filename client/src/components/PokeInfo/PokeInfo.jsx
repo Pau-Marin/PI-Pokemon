@@ -25,7 +25,7 @@ export default function PokeInfo() {
         <div className="pokeInfoName">
           <h2>{pokemon.name}</h2>
           <img className="pokeDataImg" src={pokemon.img} alt={pokemon.name} />
-          {id / 2 ? <h3>#{id}</h3> : <h3>Id en base de datos: {id}</h3>}
+          {id / 2 ? <h3>#{id}</h3> : <h3>Id site database: {id}</h3>}
           <PokeTypes types={pokemon.types} />
         </div>
         <div className="pokeInfoData">
@@ -37,7 +37,7 @@ export default function PokeInfo() {
               {pokemon.stats?.map((s) => {
                 return (
                   <p key={s.name}>
-                    {s.name}: {s.stat}
+                    <b>{s.name}:</b> {s.stat}
                   </p>
                 );
               })}
@@ -52,8 +52,12 @@ export default function PokeInfo() {
           >
             <h3>Dimensions</h3>
             <div className="pokeInfoDimensions">
-              <p>Height: {pokemon.height}cm</p>
-              <p>Weight: {pokemon.weight}Kg</p>
+              <p>
+                <b>Height:</b> {pokemon.height}cm
+              </p>
+              <p>
+                <b>Weight:</b> {pokemon.weight}Kg
+              </p>
             </div>
           </div>
         </div>
