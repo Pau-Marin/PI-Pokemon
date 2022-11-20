@@ -1,9 +1,13 @@
 .home {
-  background-color: yellow;
+  background: url("../../img/backgrounds/background_home.jpeg") no-repeat center
+    center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 .cardsContainer {
-  background-color: blue;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
