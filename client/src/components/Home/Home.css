@@ -6,6 +6,9 @@
   height: 100%;
   position: absolute;
 }
+.content {
+  margin-top: 5rem;
+}
 
 .cardsContainer {
   display: flex;

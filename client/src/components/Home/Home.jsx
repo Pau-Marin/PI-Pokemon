@@ -33,25 +33,27 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Filters paginate={paginate} />
-      <PokeSearch />
-      <Pagination
-        pokemonsPerPage={pokemonsPerPage}
-        allPokemons={allPokemons.length}
-        paginate={paginate}
-      />
-      <div className="cardsContainer">
-        {currentPokemons?.map((p) => {
-          return (
-            <PokeCard
-              key={p.id}
-              id={p.id}
-              name={p.name}
-              img={p.img}
-              types={p.types}
-            />
-          );
-        })}
+      <div className="content">
+        <Filters paginate={paginate} />
+        <PokeSearch />
+        <Pagination
+          pokemonsPerPage={pokemonsPerPage}
+          allPokemons={allPokemons.length}
+          paginate={paginate}
+        />
+        <div className="cardsContainer">
+          {currentPokemons?.map((p) => {
+            return (
+              <PokeCard
+                key={p.id}
+                id={p.id}
+                name={p.name}
+                img={p.img}
+                types={p.types}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
