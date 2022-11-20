@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchPokemonByName } from "../../../redux/actions";
+import { searchPokemonByName } from "../../redux/actions";
 
 export default function PokeSearch() {
   const dispatch = useDispatch();

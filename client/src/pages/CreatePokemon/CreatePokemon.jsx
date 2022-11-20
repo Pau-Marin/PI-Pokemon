@@ -9,7 +9,7 @@ import {
 
 import validate from "./validate";
 
-import Nav from "../Nav/Nav";
+import Nav from "../../components/Nav/Nav";
 
 import "./CreatePokemon.css";
 

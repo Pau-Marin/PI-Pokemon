@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemons } from "../../redux/actions/index";
 
-import Filters from "./Filters/Filters";
-import Pagination from "./Pagination/Pagination";
-import PokeCard from "../PokeCard/PokeCard";
-import PokeSearch from "./PokeSearch/PokeSearch";
-import Nav from "../Nav/Nav";
+import Filters from "../../components/Filters/Filters";
+import Pagination from "../../components/Pagination/Pagination";
+import PokeCard from "../../components/PokeCard/PokeCard";
+import PokeSearch from "../../components/PokeSearch/PokeSearch";
+import Nav from "../../components/Nav/Nav";
 
 import "./Home.css";
 

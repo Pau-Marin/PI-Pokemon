@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 
 import { getPokemonDetails } from "../../redux/actions";
 
-import Nav from "../Nav/Nav";
-import PokeTypes from "../PokeTypes/PokeTypes";
+import Nav from "../../components/Nav/Nav";
+import PokeTypes from "../../components/PokeTypes/PokeTypes";
 
 import "./PokeInfo.css";
 

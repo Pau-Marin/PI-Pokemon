@@ -7,7 +7,7 @@ import {
   filterPokemonsByCreated,
   filterPokemonsByAttack,
   orderByName,
-} from "../../../redux/actions/";
+} from "../../redux/actions";
 
 export default function Filters({ paginate }) {
   const dispatch = useDispatch();

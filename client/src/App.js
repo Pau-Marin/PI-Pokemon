@@ -4,10 +4,10 @@ import React from "react";
 
 import { Route } from "react-router-dom";
 
-import PokeLanding from "./components/PokeLanding/PokeLanding";
-import Home from "./components/Home/Home";
-import PokeInfo from "./components/PokeInfo/PokeInfo";
-import CreatePokemon from "./components/CreatePokemon/CreatePokemon";
+import PokeLanding from "./pages/PokeLanding/PokeLanding";
+import Home from "./pages/Home/Home";
+import PokeInfo from "./pages/PokeInfo/PokeInfo";
+import CreatePokemon from "./pages/CreatePokemon/CreatePokemon";
 
 import "./App.css";
 
