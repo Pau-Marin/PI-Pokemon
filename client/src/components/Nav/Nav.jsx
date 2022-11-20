@@ -1,13 +1,17 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
-export default class Nav extends Component {
-  render() {
-    return (
-      <nav>
-        <Link to={"/home"}>Home</Link>
-        <Link to={"/createPokemon"}>Crear Pokemon</Link>
-      </nav>
-    );
-  }
+export default function Nav() {
+  const location = useLocation();
+
+  return (
+    <>
+      {location.pathname !== "/" ? (
+        <nav className="navBar">
+          <Link to={"/home"}>Home</Link>
+          <Link to={"/createPokemon"}>Crear Pokemon</Link>
+        </nav>
+      ) : null}
+    </>
+  );
 }
