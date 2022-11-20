@@ -2,4 +2,31 @@
   break-inside: avoid;
   flex-basis: 20%;
   margin: 10px;
+  background-color: lightyellow;
+  border-radius: 25px;
+}
+
+.pokeCard h2 {
+  margin-bottom: 5px;
+}
+
+.pokeCard a {
+  text-decoration: none;
+  color: darkslategrey;
+}
+
+.pokeCard a:hover,
+.pokeCard a:focus {
+  color: aqua;
+}
+
+.pokeImg {
+  width: 12em;
+  max-height: 10em;
+  margin: 10px;
+  transition: transform 0.2s;
+}
+
+.pokeImg:hover {
+  transform: scale(1.2);
 }

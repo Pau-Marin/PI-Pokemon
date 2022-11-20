@@ -11,8 +11,8 @@ export default function PokeCard(props) {
     <div className="pokeCard">
       <Link to={`/pokemon/${id}`}>
         <h2>{name}</h2>
+        <img className="pokeImg" src={img} alt={name} />
       </Link>
-      <img src={img} alt={name} />
       <PokeTypes types={types} />
     </div>
   );
