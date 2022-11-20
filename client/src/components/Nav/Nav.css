@@ -4,6 +4,10 @@
   text-align: left;
 }
 
+.navBarItem {
+  margin-right: 5px;
+}
+
 .navBar a {
   text-decoration: none;
   padding: 0.5em 1em;

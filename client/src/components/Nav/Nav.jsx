@@ -8,8 +8,12 @@ export default function Nav() {
 
   return (
     <nav className="navBar">
-      <Link to={"/home"}>Home</Link>
-      <Link to={"/createPokemon"}>Crear Pokemon</Link>
+      <Link className="ui navBarItem" to={"/home"}>
+        Home
+      </Link>
+      <Link className="ui navBarItem" to={"/createPokemon"}>
+        Crear Pokemon
+      </Link>
     </nav>
   );
 }
