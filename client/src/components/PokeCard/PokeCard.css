@@ -22,7 +22,6 @@
 }
 
 .pokeImg {
-  width: 12em;
   max-height: 10em;
   margin: 10px;
   transition: transform 0.2s;
