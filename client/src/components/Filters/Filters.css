@@ -1,0 +1,14 @@
+.filtersContainer {
+  margin-top: -40px;
+}
+.filtersContainer select {
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border-radius: 0.8em;
+}
+
+.filtersItem {
+  margin-right: 5px;
+}

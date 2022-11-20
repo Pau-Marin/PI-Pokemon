@@ -9,6 +9,8 @@ import {
   orderByName,
 } from "../../redux/actions";
 
+import "./Filters.css";
+
 export default function Filters({ paginate }) {
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
@@ -43,11 +45,11 @@ export default function Filters({ paginate }) {
   }
 
   return (
-    <div className="filters">
+    <div className="filtersContainer">
       <button className="ui" onClick={(e) => resetFiltersHandler(e)}>
         Reset filters
       </button>
-      <select onChange={(e) => handleSort(e)}>
+      <select className="ui filtersItem" onChange={(e) => handleSort(e)}>
         <option selected disabled>
           Order
         </option>
@@ -56,7 +58,7 @@ export default function Filters({ paginate }) {
         <option value="ATK 1-9">ATK 1-9</option>
         <option value="ATK 9-1">ATK 9-1</option>
       </select>
-      <select onChange={(e) => handleFilterType(e)}>
+      <select className="ui filtersItem" onChange={(e) => handleFilterType(e)}>
         <option selected disabled>
           Type
         </option>
@@ -68,7 +70,10 @@ export default function Filters({ paginate }) {
           );
         })}
       </select>
-      <select onChange={(e) => handleFilterCreated(e)}>
+      <select
+        className="ui filtersItem"
+        onChange={(e) => handleFilterCreated(e)}
+      >
         <option selected disabled>
           Pokemons
         </option>
