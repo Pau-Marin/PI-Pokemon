@@ -1,0 +1,81 @@
+.pokeInfo.bg1 {
+  background: url("../../img/backgrounds/background_pokeInfo_1.jpg") no-repeat
+    center center fixed;
+  background-size: cover;
+  background-position-y: -250px;
+}
+
+.pokeInfo.bg2 {
+  background: url("../../img/backgrounds/background_pokeInfo_2.png") no-repeat
+    center center fixed;
+  background-size: cover;
+}
+
+.pokeInfo {
+  background-color: red;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.pokeDataContainer {
+  min-width: 200px;
+  width: 20%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.bg1 .pokeDataContainer {
+  margin-top: 270px;
+}
+
+.bg2 .pokeDataContainer {
+  margin: 70px 35%;
+  width: 600px;
+  float: left;
+}
+
+.pokeInfo h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.pokeInfo .pokeDataContainer .pokeDataImg {
+  min-width: 200px;
+  min-height: auto;
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.pokeInfo h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.bg2.pokeInfo .pokeInfoName {
+  display: inline-block;
+  width: 100%;
+}
+
+.bg1.pokeInfo .pokeInfoData {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+}
+
+.bg2.pokeInfo .pokeInfoData {
+  display: inline-block;
+  width: 10%;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  position: absolute;
+}
+
+.pokeInfo .pokeInfoStats {
+  background-color: blue;
+}
+.pokeInfo .pokeInfoDimensions {
+  background-color: yellow;
+}
