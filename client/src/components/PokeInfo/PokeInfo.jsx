@@ -29,7 +29,9 @@ export default function PokeInfo() {
           <PokeTypes types={pokemon.types} />
         </div>
         <div className="pokeInfoData">
-          <div className="pokeInfoStats">
+          <div
+            className={`pokeInfoStats ${pokemon.types?.type1.toLowerCase()}`}
+          >
             <h3>Stats</h3>
             {pokemon.stats?.map((s) => {
               return (
@@ -39,7 +41,13 @@ export default function PokeInfo() {
               );
             })}
           </div>
-          <div className="pokeInfoDimensions">
+          <div
+            className={`pokeInfoDimensions ${
+              pokemon.types?.type2
+                ? pokemon.types?.type2.toLowerCase()
+                : pokemon.types?.type1.toLowerCase()
+            }`}
+          >
             <h3>Dimensions</h3>
             <p>Height: {pokemon.height}cm</p>
             <p>Weight: {pokemon.weight}Kg</p>
