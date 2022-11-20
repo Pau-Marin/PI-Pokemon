@@ -1,0 +1,20 @@
+.navBar {
+  margin-top: 20px;
+  margin-left: 10px;
+  text-align: left;
+}
+
+.navBar a {
+  text-decoration: none;
+  padding: 0.5em 1em;
+  font-size: 1.5rem;
+  background-color: antiquewhite;
+  color: darkslategrey;
+}
+
+.navBar a:hover,
+.navBar a:focus {
+  font-weight: bold;
+  color: antiquewhite;
+  background-color: tomato;
+}
