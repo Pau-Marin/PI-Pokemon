@@ -14,7 +14,7 @@ export default function Filters({ paginate }) {
   const types = useSelector((state) => state.types);
 
   useEffect(() => {
-    dispatch(getAllTypes());
+    if (!types.length) dispatch(getAllTypes());
   }, [dispatch]);
 
   function resetFiltersHandler(e) {
@@ -46,7 +46,7 @@ export default function Filters({ paginate }) {
     <div className="filters">
       <button onClick={(e) => resetFiltersHandler(e)}>Reset filters</button>
       <select onChange={(e) => handleSort(e)}>
-        <option value="" disabled>
+        <option selected disabled>
           Order
         </option>
         <option value="az">A-Z</option>
@@ -55,7 +55,7 @@ export default function Filters({ paginate }) {
         <option value="ATK 9-1">ATK 9-1</option>
       </select>
       <select onChange={(e) => handleFilterType(e)}>
-        <option value="" disabled>
+        <option selected disabled>
           Type
         </option>
         {types?.map((t) => {
@@ -67,9 +67,12 @@ export default function Filters({ paginate }) {
         })}
       </select>
       <select onChange={(e) => handleFilterCreated(e)}>
-        <option value="all">Todos</option>
-        <option value="existing">Existentes</option>
-        <option value="created">Creados</option>
+        <option selected disabled>
+          Pokemons
+        </option>
+        <option value="all">All</option>
+        <option value="existing">Existent</option>
+        <option value="created">Created by users</option>
       </select>
     </div>
   );
