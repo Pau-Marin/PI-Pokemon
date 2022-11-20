@@ -2,7 +2,7 @@
   break-inside: avoid;
   flex-basis: 20%;
   margin: 10px;
-  background-color: lightyellow;
+  background-color: rgba(255, 255, 224, 0.85);
   border-radius: 25px;
 }
 
@@ -17,7 +17,7 @@
 
 .pokeCard a:hover,
 .pokeCard a:focus {
-  color: aqua;
+  color: rgb(0, 115, 255);
 }
 
 .pokeImg {
