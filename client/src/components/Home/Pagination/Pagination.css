@@ -11,16 +11,3 @@
   display: inline-block;
   margin-inline: 0.5rem;
 }
-
-.pagination ul li button {
-  padding: 0.5em 1em;
-  font-size: 1rem;
-  border-radius: 0.8em;
-}
-
-.pagination ul li button:hover,
-.pagination ul li button:focus {
-  font-weight: bold;
-  color: antiquewhite;
-  background-color: tomato;
-}

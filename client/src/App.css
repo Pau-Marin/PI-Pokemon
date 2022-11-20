@@ -6,10 +6,19 @@
   border: 1px dashed white;
 }
 
-body {
-  background-color: tomato;
-}
-
 .app {
   text-align: center;
+}
+
+button {
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border-radius: 0.8em;
+}
+
+button:hover,
+button:focus {
+  font-weight: bold;
+  color: antiquewhite;
+  background-color: tomato;
 }
