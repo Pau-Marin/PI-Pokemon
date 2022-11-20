@@ -1,0 +1,11 @@
+.home {
+  background-color: yellow;
+}
+
+.cardsContainer {
+  background-color: blue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+}

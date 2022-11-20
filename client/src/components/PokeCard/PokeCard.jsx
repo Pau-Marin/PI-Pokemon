@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import PokeTypes from "../PokeTypes/PokeTypes";
 
+import "./PokeCard.css";
+
 export default function PokeCard(props) {
   const { id, name, img, types } = props;
   return (

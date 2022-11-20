@@ -9,6 +9,8 @@ import Pagination from "./Pagination/Pagination";
 import PokeCard from "../PokeCard/PokeCard";
 import PokeSearch from "./PokeSearch/PokeSearch";
 
+import "./Home.css";
+
 export default function Home() {
   const dispatch = useDispatch();
   const allPokemons = useSelector((state) => state.pokemons);
@@ -36,23 +38,25 @@ export default function Home() {
       <h1>Esto es la Home</h1>
       <img src={logo} alt="PIkemon logo" />
       <Filters paginate={paginate} />
+      <PokeSearch />
       <Pagination
         pokemonsPerPage={pokemonsPerPage}
         allPokemons={allPokemons.length}
         paginate={paginate}
       />
-      <PokeSearch />
-      {currentPokemons?.map((p) => {
-        return (
-          <PokeCard
-            key={p.id}
-            id={p.id}
-            name={p.name}
-            img={p.img}
-            types={p.types}
-          />
-        );
-      })}
+      <div className="cardsContainer">
+        {currentPokemons?.map((p) => {
+          return (
+            <PokeCard
+              key={p.id}
+              id={p.id}
+              name={p.name}
+              img={p.img}
+              types={p.types}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,5 @@
+.pokeCard {
+  break-inside: avoid;
+  flex-basis: 20%;
+  margin: 10px;
+}
