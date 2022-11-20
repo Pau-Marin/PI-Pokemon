@@ -7,6 +7,8 @@ import {
   createPokemon,
 } from "../../redux/actions";
 
+import "./CreatePokemon.css";
+
 function validate(input) {
   let errors = {};
   const validateName = /^[a-z]+$/;
