@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import "./PokeLanding.css";
+
+import logo from "../../img/logo.png";
+
 export default function PokeLanding() {
   return (
     <div className="landing">
-      <h1>Está será la landing page chupi-guay</h1>
+      <img className="logo" src={logo} alt="PIkemon logo" />
       <Link to="/home">
         <button>¡Entrar!</button>
       </Link>
