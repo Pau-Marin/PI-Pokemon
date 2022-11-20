@@ -44,7 +44,9 @@ export default function Filters({ paginate }) {
 
   return (
     <div className="filters">
-      <button onClick={(e) => resetFiltersHandler(e)}>Reset filters</button>
+      <button className="ui" onClick={(e) => resetFiltersHandler(e)}>
+        Reset filters
+      </button>
       <select onChange={(e) => handleSort(e)}>
         <option selected disabled>
           Order

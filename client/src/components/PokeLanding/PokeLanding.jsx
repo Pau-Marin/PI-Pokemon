@@ -10,7 +10,7 @@ export default function PokeLanding() {
     <div className="landing">
       <img className="logo" src={logo} alt="PIkemon logo" />
       <Link to="/home">
-        <button>¡Entrar!</button>
+        <button className="ui">¡Entrar!</button>
       </Link>
     </div>
   );

@@ -10,14 +10,14 @@
   text-align: center;
 }
 
-button {
+.ui {
   padding: 0.5em 1em;
   font-size: 1rem;
   border-radius: 0.8em;
 }
 
-button:hover,
-button:focus {
+.ui:hover,
+.ui:focus {
   font-weight: bold;
   color: antiquewhite;
   background-color: tomato;

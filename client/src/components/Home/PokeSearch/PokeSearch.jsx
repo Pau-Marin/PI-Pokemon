@@ -24,7 +24,7 @@ export default function PokeSearch() {
         placeholder="Search pokemon"
         onChange={(e) => handleInputChange(e)}
       />
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
+      <button className="ui" type="submit" onClick={(e) => handleSubmit(e)}>
         Search
       </button>
     </div>
