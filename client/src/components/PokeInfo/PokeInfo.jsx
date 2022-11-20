@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { getPokemonDetails } from "../../redux/actions";
 
+import Nav from "../Nav/Nav";
 import PokeTypes from "../PokeTypes/PokeTypes";
 
 import "./PokeInfo.css";
@@ -21,6 +22,7 @@ export default function PokeInfo() {
 
   return (
     <div className={`pokeInfo ${backgrounds[random]}`}>
+      <Nav />
       <div className="pokeDataContainer">
         <div className="pokeInfoName">
           <h2>{pokemon.name}</h2>

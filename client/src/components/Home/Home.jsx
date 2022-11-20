@@ -6,6 +6,7 @@ import Filters from "./Filters/Filters";
 import Pagination from "./Pagination/Pagination";
 import PokeCard from "../PokeCard/PokeCard";
 import PokeSearch from "./PokeSearch/PokeSearch";
+import Nav from "../Nav/Nav";
 
 import "./Home.css";
 
@@ -33,6 +34,7 @@ export default function Home() {
 
   return (
     <div className="home">
+      <Nav />
       <div className="content">
         <Filters paginate={paginate} />
         <PokeSearch />
