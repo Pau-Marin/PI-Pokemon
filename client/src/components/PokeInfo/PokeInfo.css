@@ -84,3 +84,32 @@
   margin: 3rem auto;
   position: absolute;
 }
+
+.bg2 .pokeInfoContainer {
+  margin: 10px;
+}
+
+.pokeInfoData h3 {
+  padding: 5px;
+}
+
+.pokeInfoData p {
+  padding: 2px;
+}
+
+.pokeInfoStats {
+  display: grid;
+  border-top: 1px solid black;
+}
+
+.pokeInfoStats p {
+  border-top: 1px solid black;
+}
+
+.pokeInfoDimensions {
+  border-top: 1px solid black;
+}
+
+.pokeInfoDimensions p {
+  border-top: 1px solid black;
+}

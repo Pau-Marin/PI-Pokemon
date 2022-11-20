@@ -30,27 +30,31 @@ export default function PokeInfo() {
         </div>
         <div className="pokeInfoData">
           <div
-            className={`pokeInfoStats ${pokemon.types?.type1.toLowerCase()}`}
+            className={`pokeInfoContainer ${pokemon.types?.type1.toLowerCase()}`}
           >
             <h3>Stats</h3>
-            {pokemon.stats?.map((s) => {
-              return (
-                <p key={s.name}>
-                  {s.name}: {s.stat}
-                </p>
-              );
-            })}
+            <div className="pokeInfoStats">
+              {pokemon.stats?.map((s) => {
+                return (
+                  <p key={s.name}>
+                    {s.name}: {s.stat}
+                  </p>
+                );
+              })}
+            </div>
           </div>
           <div
-            className={`pokeInfoDimensions ${
+            className={`pokeInfoContainer ${
               pokemon.types?.type2
                 ? pokemon.types?.type2.toLowerCase()
                 : pokemon.types?.type1.toLowerCase()
             }`}
           >
             <h3>Dimensions</h3>
-            <p>Height: {pokemon.height}cm</p>
-            <p>Weight: {pokemon.weight}Kg</p>
+            <div className="pokeInfoDimensions">
+              <p>Height: {pokemon.height}cm</p>
+              <p>Weight: {pokemon.weight}Kg</p>
+            </div>
           </div>
         </div>
       </div>
