@@ -58,7 +58,7 @@ const PokeTypes = (props) => {
     <div className="wrapper">
       {types?.type1 && (
         <Link to="/home" onClick={(e) => handleFilterByType(types.type1)}>
-          <button className={`icon ${types.type1.toLowerCase()}`}>
+          <button tabIndex="-1" className={`icon ${types.type1.toLowerCase()}`}>
             <img
               src={typeIcons[types.type1.toLowerCase()]}
               alt={types.type1}
@@ -68,11 +68,8 @@ const PokeTypes = (props) => {
         </Link>
       )}
       {types?.type2 && (
-        <Link to="/home" onClick={(e) => handleFilterByType(types.type1)}>
-          <button
-            className={`icon ${types.type2.toLowerCase()}`}
-            onClick={(e) => handleFilterByType(e, types.type2)}
-          >
+        <Link to="/home" onClick={(e) => handleFilterByType(types.type2)}>
+          <button tabIndex="-1" className={`icon ${types.type2.toLowerCase()}`}>
             <img
               src={typeIcons[types.type2.toLowerCase()]}
               alt={types.type2}
