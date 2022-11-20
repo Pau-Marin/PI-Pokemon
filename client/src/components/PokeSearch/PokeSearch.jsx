@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchPokemonByName } from "../../redux/actions";
 
+import "./PokeSearch.css";
+
 export default function PokeSearch() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -24,7 +26,11 @@ export default function PokeSearch() {
         placeholder="Search pokemon"
         onChange={(e) => handleInputChange(e)}
       />
-      <button className="ui" type="submit" onClick={(e) => handleSubmit(e)}>
+      <button
+        className="ui searchBarItem"
+        type="submit"
+        onClick={(e) => handleSubmit(e)}
+      >
         Search
       </button>
     </div>
