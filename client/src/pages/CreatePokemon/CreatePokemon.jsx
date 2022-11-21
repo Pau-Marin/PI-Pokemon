@@ -26,7 +26,7 @@ export default function CreatePokemon() {
 
   useEffect(() => {
     dispatch(getAllTypes());
-  }, []);
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     name: "",
@@ -141,9 +141,17 @@ export default function CreatePokemon() {
             {errors.img && <p className="error">{errors.img}</p>}
           </div>
           {input.img ? (
-            <img className="formImage" src={`${input.img}`} />
+            <img
+              className="formImage"
+              src={`${input.img}`}
+              alt="Imagen añadida por el usuario"
+            />
           ) : (
-            <img className="formImage" src={defaultImage} />
+            <img
+              className="formImage"
+              src={defaultImage}
+              alt="Who's that pokemon?"
+            />
           )}
 
           <div className="form_stats">
@@ -211,10 +219,12 @@ export default function CreatePokemon() {
                       <img
                         className={`icon ${t.name.toLowerCase()}`}
                         src={typeIcons[t.name.toLowerCase()]}
+                        alt={t.name}
                       />
                       {t.name}
                     </label>
                   );
+                else return null;
               })}
             </div>
             {errors.types && <p className="error">{errors.types}</p>}

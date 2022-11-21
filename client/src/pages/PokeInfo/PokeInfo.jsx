@@ -18,7 +18,7 @@ export default function PokeInfo() {
 
   useEffect(() => {
     dispatch(getPokemonDetails(id));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={`pokeInfo ${backgrounds[random]}`}>
