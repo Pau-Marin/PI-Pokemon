@@ -1,5 +1,6 @@
 export default function validate(input) {
   let errors = {};
+
   const validateName = /^[a-z]+$/;
   const validateNum = /^\d+$/;
   const validateUrl = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -46,6 +47,13 @@ export default function validate(input) {
   if (input.speed === "0") errors.speed = "La velocidad no puede ser 0";
   if (input.speed > 200)
     errors.speed = "La velocidad no puede ser superior a 200";
+
+  // Tipos
+  if (!input.types.length)
+    errors.types = "El Pokemon debe tener al menos 1 tipo";
+
+  if (input.types.length > 2)
+    errors.types = "Los Pokemon no pueden tener más de 2 tipos";
 
   // Altura
   if (!input.height) errors.height = "Se requiere un peso";

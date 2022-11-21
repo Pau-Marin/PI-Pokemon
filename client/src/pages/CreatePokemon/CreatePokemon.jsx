@@ -10,8 +10,12 @@ import {
 import validate from "./validate";
 
 import Nav from "../../components/Nav/Nav";
+import { typeIcons } from "../../components/PokeTypes/icons";
+
+import defaultImage from "../../img/CreatePokemon_img_alt.gif";
 
 import "./CreatePokemon.css";
+import "../../components/PokeTypes/PokeTypes.css";
 
 export default function CreatePokemon() {
   const dispatch = useDispatch();
@@ -36,21 +40,30 @@ export default function CreatePokemon() {
     weight: 0,
   });
 
-  function handleInputChange(e) {
-    setInput({ ...input, [e.target.name]: e.target.value });
-    setErrors(validate({ ...input, [e.target.name]: e.target.value }));
+  function handleInputChange(e, inputType) {
+    if (inputType === "checkBox") {
+      handleCheckBox(e);
+    } else {
+      e.preventDefault();
+      setInput({ ...input, [e.target.name]: e.target.value });
+      setErrors(validate({ ...input, [e.target.name]: e.target.value }));
+    }
 
-    setDisabledButton(
-      errors.name &&
-        errors.img &&
-        errors.hp &&
-        errors.attack &&
-        errors.defense &&
-        errors.speed &&
-        errors.types &&
-        errors.height &&
-        errors.weight
-    );
+    if (
+      errors?.name === undefined &&
+      errors?.img === undefined &&
+      errors?.hp === undefined &&
+      errors?.attack === undefined &&
+      errors?.defense === undefined &&
+      errors?.speed === undefined &&
+      errors?.types === undefined &&
+      errors?.height === undefined &&
+      errors?.weight === undefined
+    ) {
+      setDisabledButton(true);
+    } else {
+      setDisabledButton(false);
+    }
   }
 
   function handleCheckBox(e) {
@@ -61,7 +74,7 @@ export default function CreatePokemon() {
       });
 
       setErrors(
-        validateCheckBox({
+        validate({
           ...input,
           types: [...input.types, e.target.value],
         })
@@ -73,37 +86,12 @@ export default function CreatePokemon() {
       });
 
       setErrors(
-        validateCheckBox({
+        validate({
           ...input,
           types: input.types.filter((t) => t !== e.target.value),
         })
       );
     }
-
-    setDisabledButton(
-      errors.name &&
-        errors.img &&
-        errors.hp &&
-        errors.attack &&
-        errors.defense &&
-        errors.speed &&
-        errors.types &&
-        errors.height &&
-        errors.weight
-    );
-  }
-
-  function validateCheckBox(input) {
-    let errors = {};
-
-    if (!input.types.length) {
-      errors.types = "El Pokemon debe tener al menos 1 tipo";
-    }
-    if (input.types.length > 2) {
-      errors.types = "Los Pokemon no pueden tener más de 2 tipos";
-    }
-
-    return errors;
   }
 
   function handleSubmit(e) {
@@ -118,8 +106,7 @@ export default function CreatePokemon() {
       attack: 0,
       defense: 0,
       speed: 0,
-      type1: "",
-      type2: "",
+      types: [],
       height: 0,
       weight: 0,
     });
@@ -127,122 +114,143 @@ export default function CreatePokemon() {
   }
 
   return (
-    <div className="form">
+    <div className="formBackground">
       <Nav />
-      <form onSubmit={handleSubmit}>
-        <h1>Crea tu pokemon</h1>
-        <label>Nombre del Pokemon:</label>
-        <input
-          type="text"
-          value={input.name}
-          onChange={handleInputChange}
-          name="name"
-          placeholder="Nombre del Pokemon"
-        ></input>
-        {errors.name && <p className="error">{errors.name}</p>}
+      <div className="formContainer">
+        <form onSubmit={handleSubmit}>
+          <h1>Crea tu pokemon</h1>
+          <div className="firstBlock">
+            <label className="fieldName">Nombre del Pokemon:</label>
+            <input
+              type="text"
+              value={input.name}
+              onChange={handleInputChange}
+              name="name"
+              placeholder="Nombre del Pokemon"
+            ></input>
+            {errors.name && <p className="error">{errors.name}</p>}
 
-        <label>Imagen del Pokemon:</label>
-        <input
-          type="text"
-          value={input.img}
-          onChange={handleInputChange}
-          name="img"
-          placeholder="Imagen del Pokemon"
-        ></input>
-        {errors.img && <p className="error">{errors.img}</p>}
+            <label className="fieldName">Imagen del Pokemon:</label>
+            <input
+              type="text"
+              value={input.img}
+              onChange={handleInputChange}
+              name="img"
+              placeholder="Imagen del Pokemon"
+            ></input>
+            {errors.img && <p className="error">{errors.img}</p>}
+          </div>
+          {input.img ? (
+            <img className="formImage" src={`${input.img}`} />
+          ) : (
+            <img className="formImage" src={defaultImage} />
+          )}
 
-        <div className="form_stats">
-          <h3>Estadísticas</h3>
-          <label>HP:</label>
-          <input
-            type="text"
-            value={input.hp}
-            onChange={handleInputChange}
-            name="hp"
-            placeholder="Vida del Pokemon"
-          ></input>
-          {errors.hp && <p className="error">{errors.hp}</p>}
+          <div className="form_stats">
+            <h3>Estadísticas</h3>
+            <div className="form_stats_container">
+              <div className="form_stats_container_1">
+                <label className="statFieldName">HP:</label>
+                <input
+                  type="text"
+                  value={input.hp}
+                  onChange={handleInputChange}
+                  name="hp"
+                  placeholder="Vida del Pokemon"
+                ></input>
+                {errors.hp && <p className="error">{errors.hp}</p>}
 
-          <label>ATK:</label>
-          <input
-            type="text"
-            value={input.attack}
-            onChange={handleInputChange}
-            name="attack"
-            placeholder="Ataque del Pokemon"
-          ></input>
-          {errors.attack && <p className="error">{errors.attack}</p>}
+                <label className="statFieldName">ATK:</label>
+                <input
+                  type="text"
+                  value={input.attack}
+                  onChange={handleInputChange}
+                  name="attack"
+                  placeholder="Ataque del Pokemon"
+                ></input>
+                {errors.attack && <p className="error">{errors.attack}</p>}
+              </div>
 
-          <label>DEF:</label>
-          <input
-            type="text"
-            value={input.defense}
-            onChange={handleInputChange}
-            name="defense"
-            placeholder="Defensa del Pokemon"
-          ></input>
-          {errors.defense && <p className="error">{errors.defense}</p>}
+              <div className="form_stats_container_2">
+                <label className="statFieldName">DEF:</label>
+                <input
+                  type="text"
+                  value={input.defense}
+                  onChange={handleInputChange}
+                  name="defense"
+                  placeholder="Defensa del Pokemon"
+                ></input>
+                {errors.defense && <p className="error">{errors.defense}</p>}
 
-          <label>SPD:</label>
-          <input
-            type="text"
-            value={input.speed}
-            onChange={handleInputChange}
-            name="speed"
-            placeholder="Velocidad del Pokemon"
-          ></input>
-          {errors.speed && <p className="error">{errors.speed}</p>}
-        </div>
+                <label className="statFieldName">SPD:</label>
+                <input
+                  type="text"
+                  value={input.speed}
+                  onChange={handleInputChange}
+                  name="speed"
+                  placeholder="Velocidad del Pokemon"
+                ></input>
+                {errors.speed && <p className="error">{errors.speed}</p>}
+              </div>
+            </div>
+          </div>
 
-        <div className="form_types">
-          <h3>Tipos</h3>
-          <ul className="form_types_list">
-            {types.map((t) => {
-              if (t.name !== "Unknown")
-                return (
-                  <li key={t.name}>
-                    <label>
+          <div className="form_types">
+            <h3>Tipos</h3>
+            <div className="form_types_list">
+              {types.map((t) => {
+                if (t.name !== "Unknown" && t.name !== "Shadow")
+                  return (
+                    <label key={t.name}>
                       <input
                         type="checkbox"
                         value={t.name}
-                        onChange={handleCheckBox}
+                        onChange={(e) => handleInputChange(e, "checkBox")}
                         name={t.name}
+                      />
+                      <img
+                        className={`icon ${t.name.toLowerCase()}`}
+                        src={typeIcons[t.name.toLowerCase()]}
                       />
                       {t.name}
                     </label>
-                  </li>
-                );
-            })}
-          </ul>
-          {errors.types && <p className="error">{errors.types}</p>}
-        </div>
+                  );
+              })}
+            </div>
+            {errors.types && <p className="error">{errors.types}</p>}
+          </div>
 
-        <div className="form_size">
-          <h3>Tamaño</h3>
-          <label>Height (cm):</label>
-          <input
-            type="text"
-            value={input.height}
-            onChange={handleInputChange}
-            name="height"
-            placeholder="Altura del Pokemon"
-          ></input>
-          {errors.height && <p className="error">{errors.height}</p>}
+          <div className="form_size">
+            <h3>Tamaño</h3>
+            <label className="statFieldName">Height (cm):</label>
+            <input
+              type="text"
+              value={input.height}
+              onChange={handleInputChange}
+              name="height"
+              placeholder="Altura del Pokemon"
+            ></input>
+            {errors.height && <p className="error">{errors.height}</p>}
 
-          <label>Weight (Kg):</label>
-          <input
-            type="text"
-            value={input.weight}
-            onChange={handleInputChange}
-            name="weight"
-            placeholder="Peso del Pokemon"
-          ></input>
-          {errors.weight && <p className="error">{errors.weight}</p>}
-        </div>
-        <button type="submit" disabled={disabledButton}>
-          ¡Crear!
-        </button>
-      </form>
+            <label className="statFieldName">Weight (Kg):</label>
+            <input
+              type="text"
+              value={input.weight}
+              onChange={handleInputChange}
+              name="weight"
+              placeholder="Peso del Pokemon"
+            ></input>
+            {errors.weight && <p className="error">{errors.weight}</p>}
+          </div>
+          <button
+            className={`${disabledButton ? "" : "ui"}`}
+            type="submit"
+            disabled={disabledButton && "disabled"}
+          >
+            ¡Crear!
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
