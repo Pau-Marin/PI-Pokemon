@@ -27,7 +27,7 @@ module.exports = {
     results = results.map((p) => {
       p = p.dataValues;
 
-      let types = [p.types[0].dataValues.name, p.types[1].dataValues.name];
+      let types = [p.types[0]?.dataValues.name, p.types[1]?.dataValues.name];
 
       return {
         id: p.id,
