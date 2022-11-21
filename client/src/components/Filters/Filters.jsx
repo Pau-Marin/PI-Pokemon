@@ -50,7 +50,7 @@ export default function Filters({ paginate }) {
         Reset filters
       </button>
       <select className="ui filtersItem" onChange={(e) => handleSort(e)}>
-        <option selected disabled>
+        <option defaultValue disabled>
           Order
         </option>
         <option value="az">A-Z</option>
@@ -59,7 +59,7 @@ export default function Filters({ paginate }) {
         <option value="ATK 9-1">ATK 9-1</option>
       </select>
       <select className="ui filtersItem" onChange={(e) => handleFilterType(e)}>
-        <option selected disabled>
+        <option defaultValue disabled>
           Type
         </option>
         {types?.map((t) => {
@@ -74,7 +74,7 @@ export default function Filters({ paginate }) {
         className="ui filtersItem"
         onChange={(e) => handleFilterCreated(e)}
       >
-        <option selected disabled>
+        <option defaultValue disabled>
           Pokemons
         </option>
         <option value="all">All</option>
