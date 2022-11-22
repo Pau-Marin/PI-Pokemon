@@ -2,28 +2,28 @@ import axios from "axios";
 
 export const getAllPokemons = () => {
   return async function (dispatch) {
-    let pokemons = await axios("http://localhost:3001/pokemons");
+    let pokemons = await axios("http://172.168.3.10:32785/pokemons");
     return dispatch({ type: "GET_ALL_POKEMONS", payload: pokemons.data });
   };
 };
 
 export const getPokemonDetails = (id) => {
   return async function (dispatch) {
-    let pokemon = await axios(`http://localhost:3001/pokemons/${id}`);
+    let pokemon = await axios(`http://172.168.3.10:32785/pokemons/${id}`);
     return dispatch({ type: "GET_POKEMON_DETAILS", payload: pokemon.data });
   };
 };
 
 export const createPokemon = (payload) => {
   return async function (dispatch) {
-    let pokemon = axios.post("http://localhost:3001/pokemons", payload);
+    let pokemon = axios.post("http://172.168.3.10:32785/pokemons", payload);
     return pokemon;
   };
 };
 
 export const getAllTypes = (payload) => {
   return async function (dispatch) {
-    let types = await axios("http://localhost:3001/types");
+    let types = await axios("http://172.168.3.10:32785/types");
     return dispatch({ type: "GET_ALL_TYPES", payload: types.data });
   };
 };
@@ -59,7 +59,9 @@ export function filterPokemonsByAttack(payload) {
 export function searchPokemonByName(name) {
   return async function (dispatch) {
     try {
-      let pokemon = await axios(`http://localhost:3001/pokemons?name=${name}`);
+      let pokemon = await axios(
+        `http://172.168.3.10:32785/pokemons?name=${name}`
+      );
       return dispatch({
         type: "SEARCH_BY_NAME",
         payload: [pokemon.data],
