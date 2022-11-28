@@ -13,6 +13,7 @@ import "./Home.css";
 export default function Home() {
   const dispatch = useDispatch();
   const allPokemons = useSelector((state) => state.pokemons);
+  const error = useSelector((state) => state.error);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,29 +35,38 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Nav />
-      <div className="content">
-        <Filters paginate={paginate} />
-        <PokeSearch />
-        <Pagination
-          pokemonsPerPage={pokemonsPerPage}
-          allPokemons={allPokemons.length}
-          paginate={paginate}
-        />
-        <div className="cardsContainer">
-          {currentPokemons?.map((p) => {
-            return (
-              <PokeCard
-                key={p.id}
-                id={p.id}
-                name={p.name}
-                img={p.img}
-                types={p.types}
-              />
-            );
-          })}
+      {error ? (
+        <div className="error">
+          <h1>Vaya, parece que ha habido un error</h1>
+          <p>Estoy trabajando para arreglarlo lo antes possible.</p>
         </div>
-      </div>
+      ) : (
+        <>
+          <Nav />
+          <div className="content">
+            <Filters paginate={paginate} />
+            <PokeSearch />
+            <Pagination
+              pokemonsPerPage={pokemonsPerPage}
+              allPokemons={allPokemons.length}
+              paginate={paginate}
+            />
+            <div className="cardsContainer">
+              {currentPokemons?.map((p) => {
+                return (
+                  <PokeCard
+                    key={p.id}
+                    id={p.id}
+                    name={p.name}
+                    img={p.img}
+                    types={p.types}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

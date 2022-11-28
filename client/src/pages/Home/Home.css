@@ -6,6 +6,19 @@
   height: 100%;
   position: absolute;
 }
+.error {
+  color: red;
+  background-color: white;
+}
+
+.error h1 {
+  font-size: 2em;
+}
+
+.error p {
+  font-size: 1.5em;
+}
+
 .content {
   margin-top: 2.5rem;
 }

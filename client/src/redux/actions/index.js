@@ -5,8 +5,12 @@ const PORT = "32785";
 
 export const getAllPokemons = () => {
   return async function (dispatch) {
-    let pokemons = await axios(`http://${HOST}:${PORT}/pokemons`);
-    return dispatch({ type: "GET_ALL_POKEMONS", payload: pokemons.data });
+    try {
+      let pokemons = await axios(`http://${HOST}:${PORT}/pokemons`);
+      return dispatch({ type: "GET_ALL_POKEMONS", payload: pokemons.data });
+    } catch (error) {
+      return dispatch({ type: "ERROR", payload: error });
+    }
   };
 };
 

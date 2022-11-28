@@ -3,11 +3,18 @@ const initialState = {
   pokemons: [],
   types: [],
   pokemonDetails: {},
+  error: "",
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     // Acá va tu código:
+    case "ERROR":
+      return {
+        ...state,
+        error: action.payload.message,
+      };
+
     case "GET_ALL_POKEMONS":
       return {
         ...state,
