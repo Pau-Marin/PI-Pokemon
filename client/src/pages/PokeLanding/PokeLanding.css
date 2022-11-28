@@ -28,6 +28,20 @@
   animation: zoom-in-zoom-out 1s ease;
 }
 
+.error {
+  color: red;
+  background-color: white;
+  height: 5em;
+}
+
+.error h1 {
+  font-size: 2em;
+}
+
+.error p {
+  font-size: 1.5em;
+}
+
 a {
   align-self: flex-start;
 }
