@@ -1,5 +1,11 @@
 const axios = require("axios");
 
+const axiosConfig = {
+  headers: {
+    "accept-encoding": null,
+  },
+};
+
 const { addType, listTypesDb } = require("../db/controllers/typeController");
 const {
   addPokemon,
@@ -17,8 +23,8 @@ const getPokemonsFromAPI = async () => {
   let pokemonsAPI = [];
   // Obtenemos datos
   // let pokemons = await axios("https://pokeapi.co/api/v2/pokemon?limit=1154");
-  let pokemons = await axios("https://pokeapi.co/api/v2/pokemon");
-  let pokemonsNext = await axios(pokemons.data.next);
+  let pokemons = await axios("https://pokeapi.co/api/v2/pokemon", axiosConfig);
+  let pokemonsNext = await axios(pokemons.data.next, axiosConfig);
 
   // Como solo viene el nombre y url hay que irlos a buscar uno por uno
   let urls = pokemons.data.results.map((pokemon) => {
@@ -34,7 +40,7 @@ const getPokemonsFromAPI = async () => {
   let promises = [];
   // ¡VENGA API, A TRABAJAR! =D
   for (let i = 0; i < urls.length; i++) {
-    let url = await axios(urls[i]);
+    let url = await axios(urls[i], axiosConfig);
     promises.push(url);
     console.log(`Cargando pokemon de ${urls[i]} (${url.data.name})`);
 
@@ -173,7 +179,9 @@ const createPokemon = async ({
 
 const getTypesFromAPI = async () => {
   // Obtenemos datos
-  let types = await axios(`https://pokeapi.co/api/v2/type`);
+  let types = await axios(`https://pokeapi.co/api/v2/type`, axiosConfig);
+  console.log("TYPES");
+  console.log(types.data.results);
 
   // Como solo viene el nombre y url hay que irlos a buscar uno por uno
   let urls = types.data.results.map((type) => {
@@ -184,7 +192,7 @@ const getTypesFromAPI = async () => {
   let promises = [];
   // ¡VENGA API, A TRABAJAR! =D
   for (let i = 0; i < urls.length; i++) {
-    let url = await axios(urls[i]);
+    let url = await axios(urls[i], axiosConfig);
     promises.push(url);
     console.log(`Cargando tipo de ${urls[i]} (${url.data.name})`);
 
