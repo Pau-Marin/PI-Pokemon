@@ -20,26 +20,31 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pokemons: action.payload,
         allPokemons: action.payload,
+        error: "",
       };
     case "GET_POKEMON_DETAILS":
       return {
         ...state,
         pokemonDetails: action.payload,
+        error: "",
       };
     case "CREATE_POKEMON":
       return {
         ...state,
         pokemons: [...state.pokemons, action.payload],
+        error: "",
       };
     case "GET_ALL_TYPES":
       return {
         ...state,
         types: action.payload,
+        error: "",
       };
     case "SEARCH_BY_NAME":
       return {
         ...state,
         pokemons: action.payload,
+        error: "",
       };
     case "FILTER_BY_TYPE": {
       const allPokemons = state.allPokemons;
@@ -56,6 +61,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: [...statusFilter],
+        error: "",
       };
     }
     case "FILTER_BY_CREATED": {
@@ -67,6 +73,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: action.payload === "all" ? allPokemons : createdFilter,
+        error: "",
       };
     }
     case "ORDER_BY_NAME": {
@@ -85,6 +92,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: [...sortedArr],
+        error: "",
       };
     }
     case "ORDER_BY_ATTACK": {
@@ -104,6 +112,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: [...sortedArr],
+        error: "",
       };
     }
     default:
