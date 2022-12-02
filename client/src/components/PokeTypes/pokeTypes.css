@@ -1,10 +1,9 @@
 .wrapper  {
   width: 80px;
   margin: 5px auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-content: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .icon {
