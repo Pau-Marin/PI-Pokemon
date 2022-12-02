@@ -180,8 +180,6 @@ const createPokemon = async ({
 const getTypesFromAPI = async () => {
   // Obtenemos datos
   let types = await axios(`https://pokeapi.co/api/v2/type`, axiosConfig);
-  console.log("TYPES");
-  console.log(types.data.results);
 
   // Como solo viene el nombre y url hay que irlos a buscar uno por uno
   let urls = types.data.results.map((type) => {
