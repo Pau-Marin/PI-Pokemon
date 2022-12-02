@@ -76,8 +76,8 @@ async function startSetup() {
 
 startSetup();
 
-// La base de datos se actualiza automaticamente cada 24h
-const INTERVALO_ACTUALIZACION_BBDD = 24;
+// La base de datos se actualiza automaticamente cada 12h
+const INTERVALO_ACTUALIZACION_BBDD = 12;
 setInterval(() => {
   startSetup();
 }, INTERVALO_ACTUALIZACION_BBDD * 60 * 60 * 1000);
