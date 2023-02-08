@@ -22,19 +22,22 @@ const getPokemonsFromAPI = async () => {
 
   let pokemonsAPI = [];
   // Obtenemos datos
-  // let pokemons = await axios("https://pokeapi.co/api/v2/pokemon?limit=1154");
-  let pokemons = await axios("https://pokeapi.co/api/v2/pokemon", axiosConfig);
-  let pokemonsNext = await axios(pokemons.data.next, axiosConfig);
+  let pokemons = await axios(
+    "https://pokeapi.co/api/v2/pokemon?limit=1154",
+    axiosConfig
+  )
+  // let pokemons = await axios("https://pokeapi.co/api/v2/pokemon", axiosConfig)
+  // let pokemonsNext = await axios(pokemons.data.next, axiosConfig)
 
   // Como solo viene el nombre y url hay que irlos a buscar uno por uno
   let urls = pokemons.data.results.map((pokemon) => {
-    return pokemon.url;
-  });
-  let urlsNext = pokemonsNext.data.results.map((pokemon) => {
-    return pokemon.url;
-  });
+    return pokemon.url
+  })
+  // let urlsNext = pokemonsNext.data.results.map((pokemon) => {
+  //   return pokemon.url
+  // })
 
-  urls = urls.concat(urlsNext);
+  // urls = urls.concat(urlsNext)
 
   let pokemon = {};
   let promises = [];
