@@ -19,9 +19,10 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn } = require("./src/db/db.js");
+const { DB_RESET } = process.env
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: DB_RESET }).then(() => {
   server.listen(3001, () => {
     console.log("Server is listening at 3001"); // eslint-disable-line no-console
   });
