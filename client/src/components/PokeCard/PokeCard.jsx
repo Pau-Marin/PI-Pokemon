@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
-import PokeTypes from "../PokeTypes/PokeTypes";
+import PokeTypes from "../PokeTypes/PokeTypes"
 
-import "./PokeCard.css";
+import "./PokeCard.css"
 
 export default function PokeCard(props) {
-  const { id, name, img, types } = props;
+  const { id, name, img, types } = props
   return (
     <div className="pokeCard">
       <Link to={`/pokemon/${id}`}>
@@ -15,5 +15,5 @@ export default function PokeCard(props) {
       </Link>
       <PokeTypes types={types} />
     </div>
-  );
+  )
 }

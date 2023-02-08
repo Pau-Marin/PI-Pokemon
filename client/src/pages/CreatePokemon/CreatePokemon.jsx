@@ -1,32 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import {
-  getAllPokemons,
-  getAllTypes,
-  createPokemon,
-} from "../../redux/actions";
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { getAllPokemons, getAllTypes, createPokemon } from "../../redux/actions"
 
-import validate from "./validate";
+import validate from "./validate"
 
-import Nav from "../../components/Nav/Nav";
-import { typeIcons } from "../../components/PokeTypes/icons";
+import Nav from "../../components/Nav/Nav"
+import { typeIcons } from "../../components/PokeTypes/icons"
 
-import defaultImage from "../../img/CreatePokemon_img_alt.gif";
+import defaultImage from "../../img/CreatePokemon_img_alt.gif"
 
-import "./CreatePokemon.css";
-import "../../components/PokeTypes/PokeTypes.css";
+import "./CreatePokemon.css"
+import "../../components/PokeTypes/PokeTypes.css"
 
 export default function CreatePokemon() {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const types = useSelector((state) => state.types);
-  const [errors, setErrors] = useState({});
-  const [disabledButton, setDisabledButton] = useState(true);
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const types = useSelector((state) => state.types)
+  const [errors, setErrors] = useState({})
+  const [disabledButton, setDisabledButton] = useState(true)
 
   useEffect(() => {
-    dispatch(getAllTypes());
-  }, [dispatch]);
+    dispatch(getAllTypes())
+  }, [dispatch])
 
   const [input, setInput] = useState({
     name: "",
@@ -38,15 +34,15 @@ export default function CreatePokemon() {
     types: [],
     height: 0,
     weight: 0,
-  });
+  })
 
   function handleInputChange(e, inputType) {
     if (inputType === "checkBox") {
-      handleCheckBox(e);
+      handleCheckBox(e)
     } else {
-      e.preventDefault();
-      setInput({ ...input, [e.target.name]: e.target.value });
-      setErrors(validate({ ...input, [e.target.name]: e.target.value }));
+      e.preventDefault()
+      setInput({ ...input, [e.target.name]: e.target.value })
+      setErrors(validate({ ...input, [e.target.name]: e.target.value }))
     }
 
     if (
@@ -60,9 +56,9 @@ export default function CreatePokemon() {
       errors?.height === undefined &&
       errors?.weight === undefined
     ) {
-      setDisabledButton(true);
+      setDisabledButton(true)
     } else {
-      setDisabledButton(false);
+      setDisabledButton(false)
     }
   }
 
@@ -71,34 +67,34 @@ export default function CreatePokemon() {
       setInput({
         ...input,
         types: [...input.types, e.target.value],
-      });
+      })
 
       setErrors(
         validate({
           ...input,
           types: [...input.types, e.target.value],
         })
-      );
+      )
     } else if (!e.target.checked) {
       setInput({
         ...input,
         types: input.types.filter((t) => t !== e.target.value),
-      });
+      })
 
       setErrors(
         validate({
           ...input,
           types: input.types.filter((t) => t !== e.target.value),
         })
-      );
+      )
     }
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(createPokemon(input));
-    dispatch(getAllPokemons());
-    alert("Pokemon creado");
+    e.preventDefault()
+    dispatch(createPokemon(input))
+    dispatch(getAllPokemons())
+    alert("Pokemon creado")
     setInput({
       name: "",
       img: "",
@@ -109,8 +105,8 @@ export default function CreatePokemon() {
       types: [],
       height: 0,
       weight: 0,
-    });
-    history.push("/home");
+    })
+    history.push("/home")
   }
 
   return (
@@ -223,8 +219,8 @@ export default function CreatePokemon() {
                       />
                       {t.name}
                     </label>
-                  );
-                else return null;
+                  )
+                else return null
               })}
             </div>
             {errors.types && <p className="error">{errors.types}</p>}
@@ -262,5 +258,5 @@ export default function CreatePokemon() {
         </form>
       </div>
     </div>
-  );
+  )
 }

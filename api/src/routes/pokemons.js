@@ -1,54 +1,54 @@
-const { Router } = require("express");
+const { Router } = require("express")
 const {
   createPokemon,
   searchPokemon,
   listPokemons,
-} = require("../middlewares/middleware");
+} = require("../middlewares/middleware")
 
-const router = Router();
+const router = Router()
 
 // /pokemons/
 router.post("/", async (req, res) => {
-  const pokemonCreated = await createPokemon(req.body);
-  res.json(pokemonCreated.msg);
-});
+  const pokemonCreated = await createPokemon(req.body)
+  res.json(pokemonCreated.msg)
+})
 
 // /pokemons/:id
 router.get("/:id", async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params
   if (id) {
     try {
-      let pokemon = await searchPokemon(req.params);
-      return res.json(pokemon);
+      let pokemon = await searchPokemon(req.params)
+      return res.json(pokemon)
     } catch (error) {
-      return res.status(404).send(error.message);
+      return res.status(404).send(error.message)
     }
   }
-});
+})
 
 // /pokemons?name=...
 router.get("/", async (req, res, next) => {
-  const { name } = req.query;
+  const { name } = req.query
   if (name) {
     try {
-      let pokemon = await searchPokemon(req.query);
-      return res.json(pokemon);
+      let pokemon = await searchPokemon(req.query)
+      return res.json(pokemon)
     } catch (error) {
-      return res.status(404).send(error.message);
+      return res.status(404).send(error.message)
     }
   }
 
-  next();
-});
+  next()
+})
 
 // /pokemons/
 router.get("/", async (req, res) => {
   try {
-    let pokemons = await listPokemons();
-    return res.json(pokemons);
+    let pokemons = await listPokemons()
+    return res.json(pokemons)
   } catch (error) {
-    return res.status(404).send(error.message);
+    return res.status(404).send(error.message)
   }
-});
+})
 
-module.exports = router;
+module.exports = router

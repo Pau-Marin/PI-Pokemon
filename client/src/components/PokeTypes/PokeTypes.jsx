@@ -1,19 +1,19 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { filterPokemonsByTypes } from "../../redux/actions/index";
-import { Link } from "react-router-dom";
+import React from "react"
+import { useDispatch } from "react-redux"
+import { filterPokemonsByTypes } from "../../redux/actions/index"
+import { Link } from "react-router-dom"
 
-import { typeIcons } from "./icons";
+import { typeIcons } from "./icons"
 
-import "./PokeTypes.css";
+import "./PokeTypes.css"
 
 const PokeTypes = (props) => {
-  const { types } = props;
+  const { types } = props
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   function handleFilterByType(type) {
-    dispatch(filterPokemonsByTypes(type));
+    dispatch(filterPokemonsByTypes(type))
   }
 
   return (
@@ -41,7 +41,7 @@ const PokeTypes = (props) => {
         </Link>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default PokeTypes;
+export default PokeTypes

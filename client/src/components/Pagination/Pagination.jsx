@@ -1,12 +1,12 @@
-import React from "react";
+import React from "react"
 
-import "./Pagination.css";
+import "./Pagination.css"
 
 export default function Pagination({ pokemonsPerPage, allPokemons, paginate }) {
-  const pageNumbers = [];
+  const pageNumbers = []
 
   for (let i = 0; i < Math.ceil(allPokemons / pokemonsPerPage); i++) {
-    pageNumbers.push(i + 1);
+    pageNumbers.push(i + 1)
   }
 
   return (
@@ -20,9 +20,9 @@ export default function Pagination({ pokemonsPerPage, allPokemons, paginate }) {
                   {n}
                 </button>
               </li>
-            );
+            )
           })}
       </ul>
     </nav>
-  );
+  )
 }

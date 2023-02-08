@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllPokemons } from "../../redux/actions/index";
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllPokemons } from "../../redux/actions/index"
 
-import Filters from "../../components/Filters/Filters";
-import Pagination from "../../components/Pagination/Pagination";
-import PokeCard from "../../components/PokeCard/PokeCard";
-import PokeSearch from "../../components/PokeSearch/PokeSearch";
-import Nav from "../../components/Nav/Nav";
+import Filters from "../../components/Filters/Filters"
+import Pagination from "../../components/Pagination/Pagination"
+import PokeCard from "../../components/PokeCard/PokeCard"
+import PokeSearch from "../../components/PokeSearch/PokeSearch"
+import Nav from "../../components/Nav/Nav"
 
-import "./Home.css";
+import "./Home.css"
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const allPokemons = useSelector((state) => state.pokemons);
+  const dispatch = useDispatch()
+  const allPokemons = useSelector((state) => state.pokemons)
 
   // Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
-  const indexOfLastPokemon = currentPage * pokemonsPerPage;
-  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pokemonsPerPage, setPokemonsPerPage] = useState(12)
+  const indexOfLastPokemon = currentPage * pokemonsPerPage
+  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage
   const currentPokemons = allPokemons.slice(
     indexOfFirstPokemon,
     indexOfLastPokemon
-  );
+  )
 
   const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+    setCurrentPage(pageNumber)
+  }
 
   useEffect(() => {
-    if (!allPokemons.length) dispatch(getAllPokemons());
-  }, [dispatch]);
+    if (!allPokemons.length) dispatch(getAllPokemons())
+  }, [dispatch])
 
   return (
     <div className="home">
@@ -53,10 +53,10 @@ export default function Home() {
                 img={p.img}
                 types={p.types}
               />
-            );
+            )
           })}
         </div>
       </div>
     </div>
-  );
+  )
 }

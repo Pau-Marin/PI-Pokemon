@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { searchPokemonByName } from "../../redux/actions";
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { searchPokemonByName } from "../../redux/actions"
 
-import "./PokeSearch.css";
+import "./PokeSearch.css"
 
 export default function PokeSearch() {
-  const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  const dispatch = useDispatch()
+  const [name, setName] = useState("")
 
   function handleInputChange(e) {
-    e.preventDefault();
-    setName(e.target.value);
+    e.preventDefault()
+    setName(e.target.value)
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(searchPokemonByName(name));
-    setName("");
+    e.preventDefault()
+    dispatch(searchPokemonByName(name))
+    setName("")
   }
 
   return (
@@ -34,5 +34,5 @@ export default function PokeSearch() {
         Search
       </button>
     </div>
-  );
+  )
 }

@@ -1,10 +1,10 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react"
+import { Link, useLocation } from "react-router-dom"
 
-import "./Nav.css";
+import "./Nav.css"
 
 export default function Nav() {
-  const location = useLocation();
+  const location = useLocation()
 
   return (
     <nav className="navBar">
@@ -15,5 +15,5 @@ export default function Nav() {
         Crear Pokemon
       </Link>
     </nav>
-  );
+  )
 }

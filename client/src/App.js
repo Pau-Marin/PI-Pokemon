@@ -1,15 +1,15 @@
-import "./App.css";
+import "./App.css"
 
-import React from "react";
+import React from "react"
 
-import { Route } from "react-router-dom";
+import { Route } from "react-router-dom"
 
-import PokeLanding from "./pages/PokeLanding/PokeLanding";
-import Home from "./pages/Home/Home";
-import PokeInfo from "./pages/PokeInfo/PokeInfo";
-import CreatePokemon from "./pages/CreatePokemon/CreatePokemon";
+import PokeLanding from "./pages/PokeLanding/PokeLanding"
+import Home from "./pages/Home/Home"
+import PokeInfo from "./pages/PokeInfo/PokeInfo"
+import CreatePokemon from "./pages/CreatePokemon/CreatePokemon"
 
-import "./App.css";
+import "./App.css"
 
 export default function App() {
   return (
@@ -19,5 +19,5 @@ export default function App() {
       <Route exact path={"/pokemon/:id"} component={PokeInfo} />
       <Route exact path={"/createPokemon"} component={CreatePokemon} />
     </div>
-  );
+  )
 }

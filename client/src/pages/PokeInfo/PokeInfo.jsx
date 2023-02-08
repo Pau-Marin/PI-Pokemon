@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 
-import { getPokemonDetails } from "../../redux/actions";
+import { getPokemonDetails } from "../../redux/actions"
 
-import Nav from "../../components/Nav/Nav";
-import PokeTypes from "../../components/PokeTypes/PokeTypes";
+import Nav from "../../components/Nav/Nav"
+import PokeTypes from "../../components/PokeTypes/PokeTypes"
 
-import "./PokeInfo.css";
+import "./PokeInfo.css"
 
 export default function PokeInfo() {
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const pokemon = useSelector((state) => state.pokemonDetails);
-  const random = Math.ceil(Math.random() * 2) - 1;
-  const backgrounds = ["bg1", "bg2"];
+  const dispatch = useDispatch()
+  const { id } = useParams()
+  const pokemon = useSelector((state) => state.pokemonDetails)
+  const random = Math.ceil(Math.random() * 2) - 1
+  const backgrounds = ["bg1", "bg2"]
 
   useEffect(() => {
-    dispatch(getPokemonDetails(id));
-  }, [dispatch]);
+    dispatch(getPokemonDetails(id))
+  }, [dispatch])
 
   return (
     <div className={`pokeInfo ${backgrounds[random]}`}>
@@ -41,7 +41,7 @@ export default function PokeInfo() {
                   <p key={s.name}>
                     <b>{s.name}:</b> {s.stat}
                   </p>
-                );
+                )
               })}
             </div>
           </div>
@@ -65,5 +65,5 @@ export default function PokeInfo() {
         </div>
       </div>
     </div>
-  );
+  )
 }

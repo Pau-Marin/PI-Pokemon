@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import {
   getAllPokemons,
   getAllTypes,
@@ -7,41 +7,41 @@ import {
   filterPokemonsByCreated,
   filterPokemonsByAttack,
   orderByName,
-} from "../../redux/actions";
+} from "../../redux/actions"
 
-import "./Filters.css";
+import "./Filters.css"
 
 export default function Filters({ paginate }) {
-  const dispatch = useDispatch();
-  const types = useSelector((state) => state.types);
+  const dispatch = useDispatch()
+  const types = useSelector((state) => state.types)
 
   useEffect(() => {
-    if (!types.length) dispatch(getAllTypes());
-  }, [dispatch]);
+    if (!types.length) dispatch(getAllTypes())
+  }, [dispatch])
 
   function resetFiltersHandler(e) {
-    e.preventDefault();
-    dispatch(getAllPokemons());
-    paginate(1);
+    e.preventDefault()
+    dispatch(getAllPokemons())
+    paginate(1)
   }
 
   function handleSort(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (e.target.value === "az" || e.target.value === "za")
-      dispatch(orderByName(e.target.value));
+      dispatch(orderByName(e.target.value))
     if (e.target.value === "ATK 1-9" || e.target.value === "ATK 9-1")
-      dispatch(filterPokemonsByAttack(e.target.value));
-    paginate(1);
+      dispatch(filterPokemonsByAttack(e.target.value))
+    paginate(1)
   }
 
   function handleFilterType(e) {
-    dispatch(filterPokemonsByTypes(e.target.value));
-    paginate(1);
+    dispatch(filterPokemonsByTypes(e.target.value))
+    paginate(1)
   }
 
   function handleFilterCreated(e) {
-    dispatch(filterPokemonsByCreated(e.target.value));
-    paginate(1);
+    dispatch(filterPokemonsByCreated(e.target.value))
+    paginate(1)
   }
 
   return (
@@ -67,7 +67,7 @@ export default function Filters({ paginate }) {
             <option key={t.id} value={t.name}>
               {t.name}
             </option>
-          );
+          )
         })}
       </select>
       <select
@@ -82,5 +82,5 @@ export default function Filters({ paginate }) {
         <option value="created">Created by users</option>
       </select>
     </div>
-  );
+  )
 }
